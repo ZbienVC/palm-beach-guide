@@ -13,7 +13,7 @@ const config: Config = {
         palm: { 50: "#f2f9f2", 100: "#e0f2e0", 200: "#b8e2b8", 300: "#85cb85", 400: "#52b052", 500: "#2e8b2e" },
       },
       fontFamily: {
-        display: ["Georgia", "Times New Roman", "serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
         body: ["system-ui", "-apple-system", "sans-serif"],
       },
     },
