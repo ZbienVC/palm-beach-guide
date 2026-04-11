@@ -23,6 +23,8 @@ export interface Restaurant {
   mapsUrl: string;
   hostNote?: string;
   reservationTip?: string;
+  priceRange?: string;    // e.g. '$' | '' | '$' | ''
+  walkMins?: number;      // minutes walk from property
 }
 
 export interface Activity {
@@ -144,6 +146,8 @@ export const guide: GuideData = {
     {
       name: "Café Boulud",
       category: "Best Overall",
+      priceRange: "$$$",
+      walkMins: 12,
       description: "Refined French-American cuisine in the heart of Palm Beach",
       why: "Consistently excellent from start to finish. The service is impeccable and the seasonal menu never disappoints.",
       area: "Palm Beach – Worth Ave area",
@@ -154,6 +158,8 @@ export const guide: GuideData = {
     {
       name: "Imoto",
       category: "Nice Dinner / Date Night",
+      priceRange: "$$$",
+      walkMins: 10,
       description: "Upscale Japanese with expertly crafted sushi and small plates",
       why: "The best date night spot on the island. Intimate, stylish, and the omakase bar is a special experience.",
       area: "Palm Beach",
@@ -163,6 +169,8 @@ export const guide: GuideData = {
     {
       name: "Buccan",
       category: "Nice Dinner / Date Night",
+      priceRange: "$$",
+      walkMins: 14,
       description: "New American small plates — creative, local, and always vibrant",
       why: "The vibe is upbeat without being loud. Perfect for a relaxed special dinner.",
       area: "Palm Beach",
@@ -172,6 +180,8 @@ export const guide: GuideData = {
     {
       name: "Hamburger Heaven",
       category: "Casual / Easy",
+      priceRange: "$",
+      walkMins: 8,
       description: "A beloved Palm Beach institution since 1945",
       why: "Unpretentious, fast, and genuinely delicious. A local staple everyone should try once.",
       area: "Worth Avenue",
@@ -205,6 +215,8 @@ export const guide: GuideData = {
     {
       name: "PB Catch",
       category: "Best Overall",
+      priceRange: "$$$",
+      walkMins: 15,
       description: "Fresh seafood with a coastal-chic vibe right on the water",
       why: "The raw bar alone is worth the visit. Best seafood on the island.",
       area: "Palm Beach",
@@ -215,6 +227,8 @@ export const guide: GuideData = {
     {
       name: "Pizza al Fresco",
       category: "Casual / Easy",
+      priceRange: "$$",
+      walkMins: 9,
       description: "Neapolitan wood-fired pizza in a beautiful garden courtyard",
       why: "The setting alone is worth it. Tucked into a quiet alleyway — one of the most charming spots in Palm Beach.",
       area: "South end of Worth Ave area",
