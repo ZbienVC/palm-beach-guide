@@ -45,7 +45,6 @@ const NAV_SECTIONS = [
 // ─── Quick Actions ────────────────────────────────────────────────────────────
 
 function QuickActions() {
-function QuickActions() {
   return (
     <section className="px-4 mb-8">
       <div className="grid grid-cols-2 gap-3">
