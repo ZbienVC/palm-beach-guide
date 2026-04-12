@@ -1,15 +1,15 @@
 // components/RestaurantCard.tsx
 "use client";
-import { MapPin, Clock } from "lucide-react";
+import { MapPin } from "lucide-react";
 import type { Restaurant } from "@/data/guide";
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "Best Overall":  "bg-amber-100 text-amber-700 border-amber-200",
-  "Date Night":    "bg-rose-100 text-rose-700 border-rose-200",
-  "Casual / Easy": "bg-emerald-100 text-emerald-700 border-emerald-200",
-  "Breakfast":     "bg-orange-100 text-orange-700 border-orange-200",
-  "Drinks":        "bg-violet-100 text-violet-700 border-violet-200",
-  "Dessert":       "bg-pink-100 text-pink-700 border-pink-200",
+  "Best Overall":  "#f59e0b",
+  "Date Night":    "#f43f5e",
+  "Casual":        "#10b981",
+  "Breakfast":     "#f97316",
+  "Drinks":        "#8b5cf6",
+  "Dessert":       "#ec4899",
 };
 
 const PRICE_COLORS: Record<string, string> = {
@@ -20,76 +20,66 @@ const PRICE_COLORS: Record<string, string> = {
 };
 
 export function RestaurantCard({ r }: { r: Restaurant }) {
-  const pill = CATEGORY_COLORS[r.category] ?? "bg-slate-100 text-slate-600 border-slate-200";
+  const accentColor = CATEGORY_COLORS[r.category] ?? "#94a3b8";
 
   return (
-    <div className="bg-white rounded-2xl shadow-card border border-sand-100/80 overflow-hidden">
-      {/* Card header */}
-      <div className="px-5 pt-5 pb-4">
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-2 flex-wrap">
-              <span className={`inline-block text-2xs font-black px-2.5 py-1 rounded-full border ${pill}`}>
-                {r.category}
-              </span>
-              {r.priceRange && (
-                <span className={`text-2xs font-black px-2 py-0.5 rounded-full ${PRICE_COLORS[r.priceRange] ?? "text-slate-500 bg-slate-50"}`}>
-                  {r.priceRange}
-                </span>
-              )}
-            </div>
-            <h3 className="font-display text-lg text-slate-800 leading-snug">{r.name}</h3>
-          </div>
+    <div
+      className="bg-white rounded-2xl shadow-card border border-sand-100/80 overflow-hidden"
+      style={{ borderLeft: `3px solid ${accentColor}` }}
+    >
+      {/* Header */}
+      <div className="px-5 pt-5 pb-3">
+        <div className="flex items-start justify-between gap-3 mb-1">
+          <h3 className="font-display text-xl text-slate-800 leading-snug flex-1">{r.name}</h3>
           {r.mapsUrl && (
             <a
               href={r.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-shrink-0 flex items-center gap-1 text-xs font-semibold text-ocean-500 active:text-ocean-700 transition-colors mt-1"
+              className="flex-shrink-0 flex items-center gap-1 bg-ocean-50 text-ocean-600 text-[11px] font-bold px-2.5 py-1.5 rounded-full border border-ocean-100 active:bg-ocean-100 transition-colors"
               aria-label={`Open ${r.name} in Maps`}
             >
-              <MapPin size={13} />
-              <span>Map</span>
+              <MapPin size={11} />
+              Map
             </a>
           )}
         </div>
-        <p className="text-sm text-slate-500 leading-relaxed mt-1.5">{r.description}</p>
+        {/* Meta row */}
+        <div className="flex items-center gap-2 flex-wrap mb-2.5">
+          {r.area && (
+            <span className="text-[11px] text-slate-400 font-medium">{r.area.split(",")[0]}</span>
+          )}
+          {r.area && r.priceRange && <span className="text-slate-200">·</span>}
+          {r.priceRange && (
+            <span className={`text-[11px] font-black px-2 py-0.5 rounded-full ${PRICE_COLORS[r.priceRange] ?? "text-slate-500 bg-slate-50"}`}>
+              {r.priceRange}
+            </span>
+          )}
+        </div>
+        <p className="text-sm text-slate-500 leading-relaxed">{r.description}</p>
       </div>
 
-      {/* Why go - accent block */}
-      <div className="mx-5 mb-4 bg-sand-50 rounded-xl px-3.5 py-3 border border-sand-200/60">
-        <p className="text-2xs font-black text-sand-500 mb-1 uppercase tracking-widest">Why go</p>
+      {/* Why go */}
+      <div className="mx-5 mb-4 rounded-xl px-3.5 py-3" style={{ backgroundColor: `${accentColor}10`, border: `1px solid ${accentColor}25` }}>
+        <p className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: accentColor }}>Why go</p>
         <p className="text-sm text-slate-700 leading-relaxed">{r.why}</p>
       </div>
 
-      {/* Footer row */}
-      <div className="px-5 pb-4 flex flex-wrap gap-x-4 gap-y-1">
-        {r.walkMins && (
-          <span className="text-xs text-slate-400 flex items-center gap-1.5">
-            <Clock size={11} className="text-sand-400" />
-            {r.walkMins} min walk
-          </span>
-        )}
-        {r.area && !r.walkMins && (
-          <span className="text-xs text-slate-400 flex items-center gap-1.5">
-            <MapPin size={11} className="text-sand-400" />
-            {r.area}
-          </span>
-        )}
-        {r.reservationTip && (
-          <span className="text-xs text-amber-600 font-semibold">
-            Reserve: {r.reservationTip}
-          </span>
-        )}
-      </div>
-
-      {/* Host tip - bottom stripe */}
-      {r.hostNote && (
-        <div className="px-5 py-3 border-t border-sand-100 bg-sand-50/60">
-          <p className="text-xs text-slate-500 leading-relaxed">
-            <span className="font-bold text-sand-500 not-italic">Host: </span>
-            <span className="italic">{r.hostNote}</span>
-          </p>
+      {/* Reservation + host note */}
+      {(r.reservationTip || r.hostNote) && (
+        <div className="px-5 pb-4 space-y-2">
+          {r.reservationTip && (
+            <div className="flex items-start gap-2">
+              <span className="text-amber-500 text-sm mt-0.5 flex-shrink-0">📅</span>
+              <span className="text-xs text-amber-700 font-semibold leading-snug">{r.reservationTip}</span>
+            </div>
+          )}
+          {r.hostNote && (
+            <div className="flex items-start gap-2 border-t border-sand-100 pt-2">
+              <span className="text-sand-400 text-sm mt-0.5 flex-shrink-0">💬</span>
+              <p className="text-xs text-slate-500 italic leading-snug">{r.hostNote}</p>
+            </div>
+          )}
         </div>
       )}
     </div>
