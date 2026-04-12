@@ -10,6 +10,7 @@
 export interface QuickAction {
   label: string;
   icon: string;           // Lucide icon name
+  emoji: string;          // Fallback emoji displayed in the badge
   href: string;
   accent?: string;        // Tailwind color class for button bg
 }
@@ -133,36 +134,42 @@ export const guide: GuideData = {
     {
       label: "Google Maps",
       icon: "MapPin",
+      emoji: "📍",
       href: "https://maps.google.com/?q=651+Okeechobee+Blvd+West+Palm+Beach+FL+33401",
       accent: "bg-ocean-500",
     },
     {
       label: "Call Uber",
       icon: "Car",
+      emoji: "🚗",
       href: "https://m.uber.com/ul/",
       accent: "bg-slate-900",
     },
     {
-      label: "Beach Guide",
+      label: "Beach",
       icon: "Waves",
+      emoji: "🏖️",
       href: "#things-to-do",
       accent: "bg-ocean-400",
     },
     {
-      label: "House Info",
+      label: "Your Stay",
       icon: "Home",
+      emoji: "🏠",
       href: "#house-info",
       accent: "bg-palm-500",
     },
     {
       label: "Reservations",
       icon: "CalendarCheck",
+      emoji: "📅",
       href: "https://resy.com",
       accent: "bg-sand-400",
     },
     {
       label: "Contact Host",
       icon: "MessageCircle",
+      emoji: "💬",
       href: "sms:+15615550100",
       accent: "bg-rose-400",
     },
