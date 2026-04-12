@@ -33,31 +33,34 @@ const CATEGORY_ORDER = [
 // ─── Section nav config ───────────────────────────────────────────────────────
 
 const NAV_SECTIONS = [
-  { id: "photos", label: "Photos", icon: Camera },
   { id: "restaurants", label: "Food", icon: UtensilsCrossed },
-  { id: "things-to-do", label: "Do", icon: Waves },
-  { id: "nightlife", label: "Night", icon: Sunset },
+  { id: "things-to-do", label: "Explore", icon: Waves },
   { id: "hidden-gems", label: "Gems", icon: Sparkles },
-  { id: "thoughts", label: "Host", icon: Heart },
   { id: "house-info", label: "House", icon: Home },
 ];
+
+
+
 
 // ─── Quick Actions ────────────────────────────────────────────────────────────
 
 function QuickActions() {
+function QuickActions() {
   return (
-    <section className="px-4 mb-10">
-      <div className="grid grid-cols-3 gap-3">
-        {guide.quickActions.map((action) => {
+    <section className="px-4 mb-8">
+      <div className="grid grid-cols-2 gap-3">
+        {guide.quickActions.slice(0, 4).map((action) => {
           const Icon = ICON_MAP[action.icon];
           return (
             <a
               key={action.label}
               href={action.href}
-              className={`${action.accent ?? "bg-slate-700"} rounded-2xl p-4 flex flex-col items-center justify-center gap-2 text-white active:scale-95 transition-all min-h-[76px] shadow-action`}
+              className="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-card border border-sand-100/80 active:scale-[0.97] transition-transform"
             >
-              {Icon && <Icon size={20} className="opacity-90" />}
-              <span className="text-[11px] font-semibold text-center leading-tight opacity-95">{action.label}</span>
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${action.accent ?? "bg-slate-700"}`}>
+                {Icon && <Icon size={18} className="text-white" />}
+              </div>
+              <span className="text-sm font-semibold text-slate-800">{action.label}</span>
             </a>
           );
         })}
@@ -65,9 +68,6 @@ function QuickActions() {
     </section>
   );
 }
-
-// ─── Restaurants section ──────────────────────────────────────────────────────
-
 function RestaurantsSection() {
   const [activeCategory, setActiveCategory] = useState<string>("Best Overall");
   const filtered = guide.restaurants.filter((r) => r.category === activeCategory);
@@ -315,15 +315,15 @@ export default function Page() {
               </a>
               <ShareButton />
             </div>
-            <h1 className="font-display text-4xl text-white mb-3 leading-tight">
+            <h1 className="font-display text-5xl text-white mb-3 leading-[1.1]">
               {guide.hero.greeting}
             </h1>
-            <p className="text-ocean-100 text-base leading-relaxed mb-5">
+            <p className="text-white/85 text-lg leading-relaxed font-light">
               {guide.hero.tagline}
             </p>
-            <p className="text-sm text-ocean-200 leading-relaxed">
-              {guide.hero.hostIntro}
-            </p>
+
+
+
           </div>
           <div className="absolute bottom-0 left-0 right-0">
             <svg viewBox="0 0 375 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
