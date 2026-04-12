@@ -1,19 +1,30 @@
 // components/SectionHeader.tsx
+// Improved: stronger hierarchy, better contrast on sand background
+
 interface Props {
   label: string;
   title: string;
   subtitle?: string;
+  alt?: boolean; // alternate (warm section) style
 }
 
-export function SectionHeader({ label, title, subtitle }: Props) {
+export function SectionHeader({ label, title, subtitle, alt }: Props) {
   return (
     <div className="mb-6">
-      <span className="text-xs font-semibold tracking-[0.15em] uppercase text-sand-400 mb-1 block">
-        {label}
-      </span>
-      <h2 className="font-display text-2xl text-slate-800 leading-tight">{title}</h2>
+      <div className="flex items-center gap-2 mb-2">
+        <div className="h-px flex-1 bg-sand-200" />
+        <span className="text-2xs font-black tracking-[0.18em] uppercase text-sand-400 px-1">
+          {label}
+        </span>
+        <div className="h-px flex-1 bg-sand-200" />
+      </div>
+      <h2 className={`font-display text-2xl leading-tight mb-1.5 ${alt ? "text-white" : "text-slate-800"}`}>
+        {title}
+      </h2>
       {subtitle && (
-        <p className="mt-1.5 text-sm text-slate-500 leading-relaxed">{subtitle}</p>
+        <p className={`text-sm leading-relaxed ${alt ? "text-white/70" : "text-slate-500"}`}>
+          {subtitle}
+        </p>
       )}
     </div>
   );
