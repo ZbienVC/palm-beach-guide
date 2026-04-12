@@ -333,7 +333,7 @@ function BottomNav() {
         onNav={(id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
       />
       <nav className="fixed bottom-0 left-0 right-0 z-50 max-w-lg mx-auto">
-        <div className="bg-white/97 backdrop-blur-md border-t border-slate-100 pb-safe-bottom">
+        <div className="bg-white border-t-2 border-slate-100 pb-safe-bottom">
           <div className="flex">
             {BOTTOM_NAV.map(({ id, label, icon: Icon }) => (
               <button
