@@ -26,6 +26,7 @@
 
   /* Safe area for iPhone home indicator */
   .pb-safe-bottom { padding-bottom: max(0.5rem, env(safe-area-inset-bottom)); }
+  .pt-safe-top { padding-top: max(0.5rem, env(safe-area-inset-top)); }
 
   /* Subtle noise texture overlay */
   .bg-warm-noise {
