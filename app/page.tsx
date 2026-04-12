@@ -24,11 +24,11 @@ const ICON_MAP: Record<string, any> = {
 
 const CATEGORY_ORDER = [
   "Best Overall",
-  "Nice Dinner / Date Night",
+  "Date Night",
   "Casual / Easy",
-  "Breakfast / Coffee",
-  "Drinks / Cocktails",
-  "Dessert / Sweet Treats",
+  "Breakfast",
+  "Drinks",
+  "Dessert",
 ];
 
 // ─── Section nav config ───────────────────────────────────────────────────────
