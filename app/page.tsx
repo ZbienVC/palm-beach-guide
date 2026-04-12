@@ -14,9 +14,9 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 
 // ─── Icon map for quick actions ───────────────────────────────────────────────
 
+// Icon map — type inferred to avoid Lucide propTypes conflict
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ICON_MAP: Record<string, React.ComponentType<any>> = {
-  MapPin, Car, Waves, Home, CalendarCheck, MessageCircle,
+const ICON_MAP: Record<string, any> = {
 };
 
 // ─── Category filter order ────────────────────────────────────────────────────
