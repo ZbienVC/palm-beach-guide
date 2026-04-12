@@ -124,6 +124,24 @@ function HouseInfoSection() {
     <section id="house-info" className="px-4 mb-12">
       <SectionHeader label="Guest essentials" title="House Info" subtitle="Everything you need for a smooth stay." />
       <div className="space-y-4">
+        {/* Property address */}
+        <a
+          href={guide.property.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-4 bg-white rounded-2xl p-5 shadow-sm border border-sand-100 active:bg-sand-50 transition-colors"
+        >
+          <div className="w-10 h-10 rounded-xl bg-ocean-50 flex items-center justify-center flex-shrink-0">
+            <MapPin size={18} className="text-ocean-500" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-0.5">Your address</p>
+            <p className="text-sm font-semibold text-slate-800">{guide.property.address}</p>
+            <p className="text-xs text-slate-500">{guide.property.city}</p>
+          </div>
+          <span className="text-xs text-ocean-500 font-semibold flex-shrink-0">Directions →</span>
+        </a>
+
         {/* WiFi with copy */}
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-sand-100">
           <div className="flex items-center gap-2 mb-3">
@@ -286,10 +304,10 @@ export default function Page() {
           <div className="absolute -bottom-10 -left-16 w-48 h-48 rounded-full bg-white/5" />
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-5">
-              <div className="flex items-center gap-1.5">
+              <a href={guide.property.mapsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 active:opacity-70 transition-opacity">
                 <MapPin size={14} className="text-ocean-200" />
-                <span className="text-xs font-semibold tracking-wider text-ocean-200 uppercase">Palm Beach, Florida</span>
-              </div>
+                <span className="text-xs font-semibold tracking-wider text-ocean-200 uppercase">West Palm Beach, FL</span>
+              </a>
               <ShareButton />
             </div>
             <h1 className="font-display text-4xl text-white mb-3 leading-tight">
