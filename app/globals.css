@@ -8,16 +8,30 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-sand-50 text-slate-800 font-body antialiased;
+    background-color: #faf7f2;
+    color: #1e293b;
+    font-family: system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3 {
-    @apply font-display;
+  h1, h2, h3, h4 {
+    font-family: var(--font-display), Georgia, serif;
   }
 }
 
 @layer utilities {
+  /* Hide scrollbar cross-browser */
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Safe area for iPhone home indicator */
   .pb-safe-bottom { padding-bottom: max(0.5rem, env(safe-area-inset-bottom)); }
+
+  /* Subtle noise texture overlay */
+  .bg-warm-noise {
+    background-color: #faf7f2;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
   .text-balance { text-wrap: balance; }
 }
