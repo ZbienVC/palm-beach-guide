@@ -1,11 +1,11 @@
-"use client"; // v2.0 2026-04-12 09:46
+"use client"; // v3.0 2026-04-12 UX rewrite
 
 import React, { useState, useCallback } from "react";
 import {
   MapPin, Car, Waves, Home, CalendarCheck, MessageCircle,
   Wifi, Clock, Copy, Check, Share2, UtensilsCrossed,
-  Sunset, Sparkles, Heart, Info, Camera,
-  Menu, X, ChevronRight, PartyPopper
+  Sunset, Sparkles, Heart, Info, Camera, Star,
+  Utensils, Compass
 } from "lucide-react";
 import { guide } from "@/data/guide";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -13,74 +13,97 @@ import { RestaurantCard } from "@/components/RestaurantCard";
 import { ActivityCard, AttractionCard, NightlifeCard, GemCard, ThoughtCard } from "@/components/Cards";
 import { PhotoGallery } from "@/components/PhotoGallery";
 
-// ─── Icon map for quick actions ───────────────────────────────────────────────
-
-// Icon map — type inferred to avoid Lucide propTypes conflict
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ICON_MAP: Record<string, any> = {
-  MapPin, Car, Waves, Home, CalendarCheck, MessageCircle, Camera,
-};
-// ─── Category filter order ────────────────────────────────────────────────────
+// ─── Category filter order ───────────────────────────────────────────────────
 
 const CATEGORY_ORDER = [
   "Best Overall",
   "Date Night",
-  "Casual / Easy",
+  "Casual",
   "Breakfast",
   "Drinks",
   "Dessert",
 ];
 
-// ─── Section nav config ───────────────────────────────────────────────────────
-
-// ─── Bottom nav — 4 clear tabs ────────────────────────────────────────────────
+// ─── Bottom nav ───────────────────────────────────────────────────────────────
 
 const BOTTOM_NAV = [
-  { id: "top",           label: "Home",          icon: Home },
-  { id: "restaurants",  label: "Food",           icon: UtensilsCrossed },
-  { id: "entertainment",label: "Entertainment",  icon: PartyPopper },
-  { id: "house-info",   label: "Your Stay",      icon: Wifi },
+  { id: "top",         label: "Home",    icon: Home },
+  { id: "restaurants", label: "Food",    icon: Utensils },
+  { id: "explore",     label: "Explore", icon: Compass },
+  { id: "house-info",  label: "Stay",    icon: Wifi },
 ];
-
-// ─── Side drawer links ────────────────────────────────────────────────────────
-
-const DRAWER_LINKS = [
-  { id: "photos",        label: "Photos",         icon: Camera },
-  { id: "things-to-do", label: "Things To Do",   icon: Waves },
-  { id: "attractions",  label: "Attractions",    icon: MapPin },
-  { id: "nightlife",    label: "Nightlife",      icon: Sunset },
-  { id: "hidden-gems",  label: "Hidden Gems",    icon: Sparkles },
-  { id: "thoughts",     label: "Host Notes",     icon: Heart },
-];
-
-
-
 
 // ─── Quick Actions ────────────────────────────────────────────────────────────
 
 function QuickActions() {
   return (
     <section className="px-4 mb-8">
-      <div className="grid grid-cols-2 gap-3">
-        {guide.quickActions.slice(0, 4).map((action: any) => (
+      <div className="grid grid-cols-3 gap-2.5">
+        {guide.quickActions.map((action: any) => (
           <a
             key={action.label}
             href={action.href}
-            className="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-card border border-sand-100/80 active:scale-[0.97] transition-transform"
+            target={action.href.startsWith("http") ? "_blank" : undefined}
+            rel={action.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            className="bg-white rounded-2xl py-4 px-2 flex flex-col items-center gap-2 shadow-sm border border-sand-100/80 active:scale-[0.97] transition-transform"
           >
-            <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl ${action.accent ?? "bg-slate-700"}`}>
-              {action.emoji ?? '⭐'}
+            <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-xl ${action.accent ?? "bg-slate-700"}`}>
+              {action.emoji ?? "⭐"}
             </div>
-            <span className="text-sm font-semibold text-slate-800 leading-tight">{action.label}</span>
+            <span className="text-[11px] font-bold text-slate-700 text-center leading-tight">{action.label}</span>
           </a>
         ))}
       </div>
     </section>
   );
 }
+
+// ─── Start Here (featured picks) ─────────────────────────────────────────────
+
+function StartHere() {
+  const featured = guide.restaurants.filter((r: any) => r.category === "Best Overall").slice(0, 3);
+  return (
+    <section className="px-4 mb-10">
+      <div className="flex items-center gap-2 mb-4">
+        <Star size={14} className="text-amber-500 fill-amber-400" />
+        <span className="text-xs font-black uppercase tracking-widest text-amber-600">Host Picks</span>
+      </div>
+      <div className="flex gap-3 overflow-x-auto -mx-4 px-4 pb-1 no-scrollbar">
+        {featured.map((r: any) => (
+          <a
+            key={r.name}
+            href={r.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 w-52 bg-white rounded-2xl shadow-sm border border-sand-100 overflow-hidden active:scale-[0.98] transition-transform"
+          >
+            <div className="h-28 bg-gradient-to-br from-ocean-400 to-ocean-600 flex items-end p-3">
+              <div>
+                <span className="text-[10px] font-black text-white/70 uppercase tracking-wider">{r.area?.split(",")[0]}</span>
+                <p className="text-white font-display text-base leading-tight">{r.name}</p>
+              </div>
+            </div>
+            <div className="p-3">
+              <div className="flex items-center justify-between mb-1.5">
+                {r.priceRange && <span className="text-xs font-bold text-slate-500">{r.priceRange}</span>}
+                <span className="text-[10px] text-ocean-500 font-bold ml-auto flex items-center gap-1">
+                  <MapPin size={9} /> Maps
+                </span>
+              </div>
+              <p className="text-xs text-slate-500 leading-snug line-clamp-2">{r.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ─── Restaurants ─────────────────────────────────────────────────────────────
+
 function RestaurantsSection() {
   const [activeCategory, setActiveCategory] = useState<string>("Best Overall");
-  const filtered = guide.restaurants.filter((r) => r.category === activeCategory);
+  const filtered = guide.restaurants.filter((r: any) => r.category === activeCategory);
 
   return (
     <section id="restaurants" className="px-4 mb-12">
@@ -91,7 +114,7 @@ function RestaurantsSection() {
       />
       <div className="flex gap-2 overflow-x-auto pb-2 mb-5 -mx-4 px-4 no-scrollbar">
         {CATEGORY_ORDER.map((cat) => {
-          const count = guide.restaurants.filter((r) => r.category === cat).length;
+          const count = guide.restaurants.filter((r: any) => r.category === cat).length;
           if (count === 0) return null;
           return (
             <button
@@ -112,7 +135,46 @@ function RestaurantsSection() {
         })}
       </div>
       <div className="space-y-4">
-        {filtered.map((r) => <RestaurantCard key={r.name} r={r} />)}
+        {filtered.map((r: any) => <RestaurantCard key={r.name} r={r} />)}
+      </div>
+    </section>
+  );
+}
+
+// ─── Explore (combined things-to-do, attractions, nightlife, gems) ────────────
+
+function ExploreSection() {
+  const [tab, setTab] = useState<"activities"|"attractions"|"nightlife"|"gems">("activities");
+  const tabs = [
+    { id: "activities",  label: "🏄 Things To Do" },
+    { id: "attractions", label: "🏛️ Attractions" },
+    { id: "nightlife",   label: "🌙 Nightlife" },
+    { id: "gems",        label: "💎 Hidden Gems" },
+  ] as const;
+
+  return (
+    <section id="explore" className="px-4 mb-12">
+      <SectionHeader label="Get out" title="Explore" subtitle="The best of Palm Beach — from sunrise to late night." />
+      <div className="flex gap-2 overflow-x-auto pb-2 mb-5 -mx-4 px-4 no-scrollbar">
+        {tabs.map((t) => (
+          <button
+            key={t.id}
+            onClick={() => setTab(t.id)}
+            className={`flex-shrink-0 text-xs font-semibold px-3.5 py-1.5 rounded-full border transition-all ${
+              tab === t.id
+                ? "bg-slate-800 text-white border-slate-800"
+                : "bg-white text-slate-600 border-slate-200 active:bg-slate-50"
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+      <div className="space-y-4">
+        {tab === "activities"  && guide.thingsToDo.map((item: any)    => <ActivityCard    key={item.title} item={item} />)}
+        {tab === "attractions" && guide.attractions.map((item: any)   => <AttractionCard key={item.name}  item={item} />)}
+        {tab === "nightlife"   && guide.nightlife.map((spot: any)     => <NightlifeCard  key={spot.name}  spot={spot} />)}
+        {tab === "gems"        && guide.hiddenGems.map((gem: any)     => <GemCard        key={gem.name}   gem={gem}  />)}
       </div>
     </section>
   );
@@ -135,9 +197,9 @@ function HouseInfoSection() {
 
   return (
     <section id="house-info" className="px-4 mb-12">
-      <SectionHeader label="Guest essentials" title="House Info" subtitle="Everything you need for a smooth stay." />
+      <SectionHeader label="Guest essentials" title="Your Stay" subtitle="Everything you need for a smooth stay." />
       <div className="space-y-4">
-        {/* Property address */}
+        {/* Address */}
         <a
           href={guide.property.mapsUrl}
           target="_blank"
@@ -155,7 +217,7 @@ function HouseInfoSection() {
           <span className="text-xs text-ocean-500 font-semibold flex-shrink-0">Directions →</span>
         </a>
 
-        {/* WiFi with copy */}
+        {/* WiFi */}
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-sand-100">
           <div className="flex items-center gap-2 mb-3">
             <Wifi size={16} className="text-ocean-500" />
@@ -174,18 +236,14 @@ function HouseInfoSection() {
             <button
               onClick={copyWifi}
               className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
-                wifiCopied
-                  ? "bg-emerald-100 text-emerald-600"
-                  : "bg-ocean-100 text-ocean-600 active:bg-ocean-200"
+                wifiCopied ? "bg-emerald-100 text-emerald-600" : "bg-ocean-100 text-ocean-600 active:bg-ocean-200"
               }`}
               aria-label="Copy WiFi password"
             >
               {wifiCopied ? <Check size={16} /> : <Copy size={16} />}
             </button>
           </div>
-          {wifiCopied && (
-            <p className="text-xs text-emerald-600 font-medium text-center mt-2">Password copied!</p>
-          )}
+          {wifiCopied && <p className="text-xs text-emerald-600 font-medium text-center mt-2">Password copied!</p>}
         </div>
 
         {/* Parking */}
@@ -204,7 +262,7 @@ function HouseInfoSection() {
             <span className="font-semibold text-sm text-slate-700">Check-out: {h.checkoutTime}</span>
           </div>
           <ul className="space-y-1.5">
-            {h.checkoutReminders.map((r, i) => (
+            {h.checkoutReminders.map((r: string, i: number) => (
               <li key={i} className="text-sm text-slate-600 flex items-start gap-2">
                 <span className="text-palm-400 mt-0.5 flex-shrink-0">✓</span>
                 {r}
@@ -220,7 +278,7 @@ function HouseInfoSection() {
             <p className="text-xs font-bold uppercase tracking-wide text-amber-600">Important notes</p>
           </div>
           <ul className="space-y-2">
-            {h.importantNotes.map((n, i) => (
+            {h.importantNotes.map((n: string, i: number) => (
               <li key={i} className="text-sm text-slate-700 flex items-start gap-2">
                 <span className="text-amber-500 flex-shrink-0 mt-0.5">•</span>
                 {n}
@@ -229,7 +287,7 @@ function HouseInfoSection() {
           </ul>
         </div>
 
-        {/* Contact */}
+        {/* Contact host */}
         <a
           href={`sms:${h.contactHost.match(/\(?\d[\d\s\-().+]{7,}/)?.[0] ?? ""}`}
           className="block bg-slate-900 rounded-2xl p-5 text-white active:opacity-90 transition-opacity"
@@ -241,81 +299,25 @@ function HouseInfoSection() {
           <p className="text-sm text-slate-300 mb-3">{h.contactHost}</p>
           <p className="text-xs text-slate-500 border-t border-slate-700 pt-3">{h.emergency}</p>
         </a>
+
+        {/* Host thoughts */}
+        <div className="space-y-3">
+          <p className="text-xs font-black uppercase tracking-widest text-slate-400 px-1">From your host</p>
+          {guide.personalThoughts.map((t: any) => <ThoughtCard key={t.label} t={t} />)}
+        </div>
       </div>
     </section>
   );
 }
 
-// ─── Side Drawer ──────────────────────────────────────────────────────────────
-
-function SideDrawer({ open, onClose, onNav }: { open: boolean; onClose: () => void; onNav: (id: string) => void }) {
-  React.useEffect(() => {
-    if (open) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
-    return () => { document.body.style.overflow = ""; };
-  }, [open]);
-
-  if (!open) return null;
-
-  return (
-    <>
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm"
-        onClick={onClose}
-      />
-      {/* Drawer panel */}
-      <div className="fixed top-0 right-0 bottom-0 z-[70] w-72 bg-white shadow-2xl flex flex-col max-w-[85vw]">
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-sand-100">
-          <div>
-            <p className="font-display text-lg text-slate-800">More</p>
-            <p className="text-xs text-slate-400">All sections</p>
-          </div>
-          <button
-            onClick={onClose}
-            className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 active:bg-slate-200 transition-colors"
-          >
-            <X size={18} />
-          </button>
-        </div>
-        {/* Links */}
-        <div className="flex-1 overflow-y-auto py-3">
-          {DRAWER_LINKS.map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              onClick={() => { onNav(id); onClose(); }}
-              className="w-full flex items-center gap-4 px-5 py-3.5 text-left active:bg-sand-50 transition-colors"
-            >
-              <div className="w-9 h-9 rounded-xl bg-ocean-50 flex items-center justify-center flex-shrink-0">
-                <Icon size={17} className="text-ocean-500" />
-              </div>
-              <span className="text-sm font-semibold text-slate-700 flex-1">{label}</span>
-              <ChevronRight size={15} className="text-slate-300" />
-            </button>
-          ))}
-        </div>
-        {/* Footer */}
-        <div className="px-5 py-4 border-t border-sand-100">
-          <p className="text-xs text-slate-400 text-center">651 Okeechobee Blvd, Unit 210</p>
-          <p className="text-xs text-slate-400 text-center">West Palm Beach, FL 33401</p>
-        </div>
-      </div>
-    </>
-  );
-}
-
-// ─── Bottom nav ───────────────────────────────────────────────────────────────
+// ─── Bottom Nav ───────────────────────────────────────────────────────────────
 
 function BottomNav() {
   const [active, setActive] = React.useState("top");
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   const scrollTo = (id: string) => {
     if (id === "top") {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } else if (id === "entertainment") {
-      document.getElementById("things-to-do")?.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -323,41 +325,26 @@ function BottomNav() {
   };
 
   return (
-    <>
-      <SideDrawer
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        onNav={(id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
-      />
-      <nav className="fixed bottom-0 left-0 right-0 z-50 max-w-lg mx-auto">
-        <div className="bg-white border-t-2 border-slate-100 pb-safe-bottom">
-          <div className="flex">
-            {BOTTOM_NAV.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                className={`flex-1 flex flex-col items-center justify-center py-2.5 gap-1 transition-all ${
-                  active === id ? "text-ocean-600" : "text-slate-400"
-                }`}
-              >
-                <Icon size={active === id ? 20 : 18} strokeWidth={active === id ? 2.5 : 2} />
-                <span className={`text-[10px] font-bold leading-none ${active === id ? "text-ocean-600" : "text-slate-400"}`}>
-                  {label}
-                </span>
-              </button>
-            ))}
-            {/* Menu button */}
+    <nav className="fixed bottom-0 left-0 right-0 z-50 max-w-lg mx-auto">
+      <div className="bg-white border-t-2 border-slate-100 pb-safe-bottom">
+        <div className="flex">
+          {BOTTOM_NAV.map(({ id, label, icon: Icon }) => (
             <button
-              onClick={() => setDrawerOpen(true)}
-              className="flex-none w-14 flex flex-col items-center justify-center py-2.5 gap-1 text-slate-400 active:text-ocean-500 transition-colors"
+              key={id}
+              onClick={() => scrollTo(id)}
+              className={`flex-1 flex flex-col items-center justify-center py-2.5 gap-1 transition-all ${
+                active === id ? "text-ocean-600" : "text-slate-400"
+              }`}
             >
-              <Menu size={18} strokeWidth={2} />
-              <span className="text-[10px] font-bold leading-none">More</span>
+              <Icon size={active === id ? 20 : 18} strokeWidth={active === id ? 2.5 : 2} />
+              <span className={`text-[10px] font-bold leading-none ${active === id ? "text-ocean-600" : "text-slate-400"}`}>
+                {label}
+              </span>
             </button>
-          </div>
+          ))}
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }
 
@@ -365,30 +352,23 @@ function BottomNav() {
 
 function ShareButton() {
   const [shared, setShared] = useState(false);
-
   const handleShare = async () => {
     if (typeof navigator !== "undefined" && navigator.share) {
-      try {
-        await navigator.share({
-          title: "Palm Beach Local Guide",
-          text: "Check out this curated Palm Beach guide!",
-          url: window.location.href,
-        });
-      } catch { /* cancelled */ }
+      try { await navigator.share({ title: "Palm Beach Local Guide", url: window.location.href }); }
+      catch { /* cancelled */ }
     } else if (navigator.clipboard) {
       await navigator.clipboard.writeText(window.location.href);
       setShared(true);
       setTimeout(() => setShared(false), 2000);
     }
   };
-
   return (
     <button
       onClick={handleShare}
       className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/20 text-white text-xs font-semibold backdrop-blur-sm active:bg-white/30 transition-all"
     >
       {shared ? <Check size={13} /> : <Share2 size={13} />}
-      {shared ? "Copied!" : "Share guide"}
+      {shared ? "Copied!" : "Share"}
     </button>
   );
 }
@@ -398,10 +378,13 @@ function ShareButton() {
 export default function Page() {
   return (
     <>
-      <main className="min-h-screen bg-sand-50 max-w-lg mx-auto pb-20">
+      <main className="min-h-screen bg-sand-50 max-w-lg mx-auto pb-24">
         <div id="top" />
-        {/* HERO */}
-        <section className="relative overflow-hidden px-6 pt-14 pb-16 text-white" style={{ background: "linear-gradient(160deg, #155e6a 0%, #1f7d8e 40%, #3d9aaa 80%, #6cb8c2 100%)" }}>
+        {/* Hero */}
+        <section
+          className="relative overflow-hidden px-6 pt-14 pb-16 text-white"
+          style={{ background: "linear-gradient(160deg, #155e6a 0%, #1f7d8e 40%, #3d9aaa 80%, #6cb8c2 100%)" }}
+        >
           <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/5" />
           <div className="absolute -bottom-10 -left-16 w-48 h-48 rounded-full bg-white/5" />
           <div className="relative z-10">
@@ -412,15 +395,8 @@ export default function Page() {
               </a>
               <ShareButton />
             </div>
-            <h1 className="font-display text-5xl text-white mb-3 leading-[1.1]">
-              {guide.hero.greeting}
-            </h1>
-            <p className="text-white/85 text-lg leading-relaxed font-light">
-              {guide.hero.tagline}
-            </p>
-
-
-
+            <h1 className="font-display text-5xl text-white mb-3 leading-[1.1]">{guide.hero.greeting}</h1>
+            <p className="text-white/85 text-lg leading-relaxed font-light">{guide.hero.tagline}</p>
           </div>
           <div className="absolute bottom-0 left-0 right-0">
             <svg viewBox="0 0 375 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
@@ -431,58 +407,16 @@ export default function Page() {
 
         <div className="pt-6">
           <QuickActions />
+          <StartHere />
 
           {/* Photos */}
           <section id="photos" className="px-4 mb-12">
-            <SectionHeader
-              label="Take a look"
-              title="Photos"
-              subtitle="The apartment and the area — tap any photo to view full screen."
-            />
-            <PhotoGallery
-              apartmentPhotos={guide.photos.apartmentPhotos}
-              areaPhotos={guide.photos.areaPhotos}
-            />
+            <SectionHeader label="Take a look" title="Photos" subtitle="The apartment and the area — tap any photo to view full screen." />
+            <PhotoGallery apartmentPhotos={guide.photos.apartmentPhotos} areaPhotos={guide.photos.areaPhotos} />
           </section>
 
           <RestaurantsSection />
-
-          <div id="entertainment" />
-          <section id="things-to-do" className="px-4 mb-12">
-            <SectionHeader label="Get out" title="Best Things To Do" subtitle="From morning walks to afternoon adventures." />
-            <div className="space-y-4">
-              {guide.thingsToDo.map((item) => <ActivityCard key={item.title} item={item} />)}
-            </div>
-          </section>
-
-          <section id="attractions" className="px-4 mb-12">
-            <SectionHeader label="Discover" title="Attractions" subtitle="Signature destinations worth putting on the list." />
-            <div className="space-y-4">
-              {guide.attractions.map((item) => <AttractionCard key={item.name} item={item} />)}
-            </div>
-          </section>
-
-          <section id="nightlife" className="px-4 mb-12">
-            <SectionHeader label="Evening" title="Nightlife" subtitle="Where to take the night — from low-key to lively." />
-            <div className="space-y-3">
-              {guide.nightlife.map((spot) => <NightlifeCard key={spot.name} spot={spot} />)}
-            </div>
-          </section>
-
-          <section id="hidden-gems" className="px-4 mb-12">
-            <SectionHeader label="Insider picks" title="Hidden Gems" subtitle="The places most visitors never find." />
-            <div className="space-y-4">
-              {guide.hiddenGems.map((gem) => <GemCard key={gem.name} gem={gem} />)}
-            </div>
-          </section>
-
-          <section id="thoughts" className="px-4 mb-12">
-            <SectionHeader label="From your host" title="My Thoughts" subtitle="Personal takes — honest, brief, worth reading." />
-            <div className="space-y-4">
-              {guide.personalThoughts.map((t) => <ThoughtCard key={t.label} t={t} />)}
-            </div>
-          </section>
-
+          <ExploreSection />
           <HouseInfoSection />
 
           <footer className="px-4 pb-6 text-center">
@@ -491,7 +425,6 @@ export default function Page() {
           </footer>
         </div>
       </main>
-
       <BottomNav />
     </>
   );
