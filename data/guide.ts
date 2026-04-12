@@ -76,6 +76,13 @@ export interface HouseInfo {
 }
 
 export interface GuideData {
+  property: {
+    name: string;
+    address: string;
+    unit: string;
+    city: string;
+    mapsUrl: string;
+  };
   hero: {
     greeting: string;
     tagline: string;
@@ -96,9 +103,15 @@ export interface GuideData {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const guide: GuideData = {
+  property: {
+    name: "The Okeechobee Residences",
+    address: "651 Okeechobee Blvd, Unit 210",
+    city: "West Palm Beach, FL 33401",
+    mapsUrl: "https://maps.google.com/?q=651+Okeechobee+Blvd+West+Palm+Beach+FL+33401",
+  },
   hero: {
-    greeting: "Welcome to Palm Beach",
-    tagline: "Your curated local guide — food, fun, and favorite spots",
+    greeting: "Welcome to West Palm Beach",
+    tagline: "Your curated local guide for Palm Beach and West Palm Beach",
     hostIntro:
       "I've spent years exploring this beautiful stretch of Florida and handpicked every spot in this guide. Whether you want a slow beach morning, a perfect dinner reservation, or a hidden gem most visitors miss — it's all here. Enjoy every moment.",
   },
@@ -107,7 +120,7 @@ export const guide: GuideData = {
     {
       label: "Google Maps",
       icon: "MapPin",
-      href: "https://maps.google.com/?q=Palm+Beach+Florida",
+      href: "https://maps.google.com/?q=651+Okeechobee+Blvd+West+Palm+Beach+FL+33401",
       accent: "bg-ocean-500",
     },
     {
@@ -147,7 +160,7 @@ export const guide: GuideData = {
       name: "Café Boulud",
       category: "Best Overall",
       priceRange: "$$$",
-      walkMins: 12,
+      walkMins: 18,
       description: "Refined French-American cuisine in the heart of Palm Beach",
       why: "Consistently excellent from start to finish. The service is impeccable and the seasonal menu never disappoints.",
       area: "Palm Beach – Worth Ave area",
@@ -181,7 +194,7 @@ export const guide: GuideData = {
       name: "Hamburger Heaven",
       category: "Casual / Easy",
       priceRange: "$",
-      walkMins: 8,
+      driveMins: 5,
       description: "A beloved Palm Beach institution since 1945",
       why: "Unpretentious, fast, and genuinely delicious. A local staple everyone should try once.",
       area: "Worth Avenue",
@@ -216,7 +229,7 @@ export const guide: GuideData = {
       name: "PB Catch",
       category: "Best Overall",
       priceRange: "$$$",
-      walkMins: 15,
+      driveMins: 12,
       description: "Fresh seafood with a coastal-chic vibe right on the water",
       why: "The raw bar alone is worth the visit. Best seafood on the island.",
       area: "Palm Beach",
