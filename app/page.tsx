@@ -1,4 +1,4 @@
-"use client";
+"use client"; // v2.0 2026-04-12 09:46
 
 import React, { useState, useCallback } from "react";
 import {
