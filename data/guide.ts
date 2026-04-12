@@ -65,6 +65,17 @@ export interface PersonalThought {
   mapsUrl?: string;
 }
 
+export interface Photo {
+  src: string;         // URL or /images/filename.jpg (drop files in public/images/)
+  alt: string;         // accessibility description
+  caption?: string;    // optional caption shown in lightbox
+}
+
+export interface PhotoGallery {
+  apartmentPhotos: Photo[];
+  areaPhotos: Photo[];
+}
+
 export interface HouseInfo {
   wifi: { name: string; password: string };
   parking: string;
@@ -95,6 +106,7 @@ export interface GuideData {
   nightlife: NightlifeSpot[];
   hiddenGems: HiddenGem[];
   personalThoughts: PersonalThought[];
+  photos: PhotoGallery;
   houseInfo: HouseInfo;
 }
 
@@ -445,6 +457,73 @@ export const guide: GuideData = {
     },
   ],
 
+  photos: {
+    // ── Apartment Photos ─────────────────────────────────────────────────────
+    // Add your own photos by:
+    //   Option A: Put image files in /public/images/ and use src: "/images/filename.jpg"
+    //   Option B: Use any https:// URL (Airbnb listing photos, Google Drive, etc.)
+    // The gallery handles both automatically.
+    apartmentPhotos: [
+      {
+        src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+        alt: "Modern living room with city views",
+        caption: "Living room — floor to ceiling windows",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+        alt: "Bright modern kitchen",
+        caption: "Kitchen — fully equipped",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800&q=80",
+        alt: "Comfortable bedroom with natural light",
+        caption: "Primary bedroom",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
+        alt: "Modern bathroom",
+        caption: "En-suite bathroom",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
+        alt: "Building exterior and pool",
+        caption: "Building pool and amenities",
+      },
+    ],
+    // ── Area / Palm Beach Photos ──────────────────────────────────────────────
+    areaPhotos: [
+      {
+        src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+        alt: "Beautiful Palm Beach coastline",
+        caption: "Palm Beach — 10 minutes away",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80",
+        alt: "White sand beach with clear water",
+        caption: "Phipps Ocean Park Beach",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1562599838-8cc871c241a5?w=800&q=80",
+        alt: "Luxury shopping street",
+        caption: "Worth Avenue",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=800&q=80",
+        alt: "Waterfront dining and views",
+        caption: "West Palm Beach waterfront",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1533106958148-daaeab8b83fe?w=800&q=80",
+        alt: "Sunset over the water",
+        caption: "Florida sunsets never get old",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+        alt: "Palm trees on a beautiful day",
+        caption: "Classic South Florida",
+      },
+    ],
+  },
   houseInfo: {
     wifi: {
       name: "PalmBeachHome_5G",
