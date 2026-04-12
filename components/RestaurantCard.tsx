@@ -41,15 +41,15 @@ export function RestaurantCard({ r }: { r: Restaurant }) {
             <h3 className="font-display text-lg text-slate-800 leading-snug">{r.name}</h3>
           </div>
           <a
+          <a
             href={r.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-shrink-0 w-10 h-10 rounded-xl bg-ocean-50 flex items-center justify-center text-ocean-500 active:bg-ocean-100 transition-colors border border-ocean-100"
+            className="flex-shrink-0 flex items-center gap-1 text-xs font-semibold text-ocean-500 active:text-ocean-700 transition-colors"
             aria-label={`Open ${r.name} in Maps`}
           >
-            <MapPin size={16} />
-          </a>
-        </div>
+            <MapPin size={13} />
+            <span>Map</span>
         <p className="text-sm text-slate-500 leading-relaxed mt-1.5">{r.description}</p>
       </div>
 
@@ -74,10 +74,10 @@ export function RestaurantCard({ r }: { r: Restaurant }) {
           </span>
         )}
         {r.reservationTip && (
-          <span className="text-xs text-amber-600 font-semibold flex items-center gap-1">
-            📅 {r.reservationTip}
+        {r.reservationTip && (
+          <span className="text-xs text-amber-600 font-semibold">
+            Reserve: {r.reservationTip}
           </span>
-        )}
       </div>
 
       {/* Host tip — bottom stripe */}
