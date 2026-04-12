@@ -14,7 +14,8 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 
 // ─── Icon map for quick actions ───────────────────────────────────────────────
 
-const ICON_MAP: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ICON_MAP: Record<string, React.ComponentType<any>> = {
   MapPin, Car, Waves, Home, CalendarCheck, MessageCircle,
 };
 
