@@ -5,11 +5,11 @@ import type { Restaurant } from "@/data/guide";
 
 const CATEGORY_COLORS: Record<string, string> = {
   "Best Overall":           "bg-amber-100 text-amber-700 border-amber-200",
-  "Nice Dinner / Date Night": "bg-rose-100 text-rose-700 border-rose-200",
+  "Date Night": "bg-rose-100 text-rose-700 border-rose-200",
   "Casual / Easy":          "bg-emerald-100 text-emerald-700 border-emerald-200",
-  "Breakfast / Coffee":     "bg-orange-100 text-orange-700 border-orange-200",
-  "Drinks / Cocktails":     "bg-violet-100 text-violet-700 border-violet-200",
-  "Dessert / Sweet Treats": "bg-pink-100 text-pink-700 border-pink-200",
+  "Breakfast":     "bg-orange-100 text-orange-700 border-orange-200",
+  "Drinks":     "bg-violet-100 text-violet-700 border-violet-200",
+  "Dessert": "bg-pink-100 text-pink-700 border-pink-200",
 };
 
 const PRICE_COLORS: Record<string, string> = {
