@@ -4,12 +4,13 @@ import React, { useState, useCallback } from "react";
 import {
   MapPin, Car, Waves, Home, CalendarCheck, MessageCircle,
   Wifi, Clock, Copy, Check, Share2, UtensilsCrossed,
-  Sunset, Sparkles, Heart, Info
+  Sunset, Sparkles, Heart, Info, Camera
 } from "lucide-react";
 import { guide } from "@/data/guide";
 import { SectionHeader } from "@/components/SectionHeader";
 import { RestaurantCard } from "@/components/RestaurantCard";
 import { ActivityCard, AttractionCard, NightlifeCard, GemCard, ThoughtCard } from "@/components/Cards";
+import { PhotoGallery } from "@/components/PhotoGallery";
 
 // ─── Icon map for quick actions ───────────────────────────────────────────────
 
@@ -31,6 +32,7 @@ const CATEGORY_ORDER = [
 // ─── Section nav config ───────────────────────────────────────────────────────
 
 const NAV_SECTIONS = [
+  { id: "photos", label: "Photos", icon: Camera },
   { id: "restaurants", label: "Food", icon: UtensilsCrossed },
   { id: "things-to-do", label: "Do", icon: Waves },
   { id: "nightlife", label: "Night", icon: Sunset },
@@ -331,6 +333,20 @@ export default function Page() {
 
         <div className="pt-6">
           <QuickActions />
+
+          {/* Photos */}
+          <section id="photos" className="px-4 mb-12">
+            <SectionHeader
+              label="Take a look"
+              title="Photos"
+              subtitle="The apartment and the area — tap any photo to view full screen."
+            />
+            <PhotoGallery
+              apartmentPhotos={guide.photos.apartmentPhotos}
+              areaPhotos={guide.photos.areaPhotos}
+            />
+          </section>
+
           <RestaurantsSection />
 
           <section id="things-to-do" className="px-4 mb-12">
