@@ -1,11 +1,10 @@
-"use client"; // v3.0 2026-04-12 UX rewrite
+"use client"; // v4.0 2026-04-12 visual/UX polish
 
 import React, { useState, useCallback } from "react";
 import {
-  MapPin, Car, Waves, Home, CalendarCheck, MessageCircle,
-  Wifi, Clock, Copy, Check, Share2, UtensilsCrossed,
-  Sunset, Sparkles, Heart, Info, Camera, Star,
-  Utensils, Compass
+  MapPin, Car, Wifi, Clock, Copy, Check, Share2,
+  Info, Star, Utensils, Compass, MessageCircle,
+  UtensilsCrossed, Sunset, Waves
 } from "lucide-react";
 import { guide } from "@/data/guide";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -13,21 +12,14 @@ import { RestaurantCard } from "@/components/RestaurantCard";
 import { ActivityCard, AttractionCard, NightlifeCard, GemCard, ThoughtCard } from "@/components/Cards";
 import { PhotoGallery } from "@/components/PhotoGallery";
 
-// ─── Category filter order ───────────────────────────────────────────────────
+// ─── Category filter order ────────────────────────────────────────────────────
 
-const CATEGORY_ORDER = [
-  "Best Overall",
-  "Date Night",
-  "Casual",
-  "Breakfast",
-  "Drinks",
-  "Dessert",
-];
+const CATEGORY_ORDER = ["Best Overall", "Date Night", "Casual", "Breakfast", "Drinks", "Dessert"];
 
 // ─── Bottom nav ───────────────────────────────────────────────────────────────
 
 const BOTTOM_NAV = [
-  { id: "top",         label: "Home",    icon: Home },
+  { id: "top",         label: "Home",    icon: Waves },
   { id: "restaurants", label: "Food",    icon: Utensils },
   { id: "explore",     label: "Explore", icon: Compass },
   { id: "house-info",  label: "Stay",    icon: Wifi },
@@ -37,20 +29,18 @@ const BOTTOM_NAV = [
 
 function QuickActions() {
   return (
-    <section className="px-4 mb-8">
-      <div className="grid grid-cols-3 gap-2.5">
+    <section className="px-4 mb-6">
+      <div className="grid grid-cols-3 gap-2">
         {guide.quickActions.map((action: any) => (
           <a
             key={action.label}
             href={action.href}
             target={action.href.startsWith("http") ? "_blank" : undefined}
             rel={action.href.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="bg-white rounded-2xl py-4 px-2 flex flex-col items-center gap-2 shadow-sm border border-sand-100/80 active:scale-[0.97] transition-transform"
+            className="bg-white rounded-xl py-3.5 px-2 flex flex-col items-center gap-1.5 shadow-sm border border-sand-100 active:scale-[0.96] transition-transform"
           >
-            <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-xl ${action.accent ?? "bg-slate-700"}`}>
-              {action.emoji ?? "⭐"}
-            </div>
-            <span className="text-[11px] font-bold text-slate-700 text-center leading-tight">{action.label}</span>
+            <span className="text-2xl leading-none">{action.emoji ?? "⭐"}</span>
+            <span className="text-[10px] font-bold text-slate-600 text-center leading-tight">{action.label}</span>
           </a>
         ))}
       </div>
@@ -58,42 +48,46 @@ function QuickActions() {
   );
 }
 
-// ─── Start Here (featured picks) ─────────────────────────────────────────────
+// ─── Host Picks strip ─────────────────────────────────────────────────────────
 
-function StartHere() {
-  const featured = guide.restaurants.filter((r: any) => r.category === "Best Overall").slice(0, 3);
+function HostPicks() {
+  const picks = guide.restaurants
+    .filter((r: any) => r.hostNote || r.category === "Best Overall")
+    .slice(0, 4);
+
   return (
-    <section className="px-4 mb-10">
-      <div className="flex items-center gap-2 mb-4">
-        <Star size={14} className="text-amber-500 fill-amber-400" />
-        <span className="text-xs font-black uppercase tracking-widest text-amber-600">Host Picks</span>
+    <section className="mb-8">
+      <div className="px-4 flex items-center gap-2 mb-3">
+        <Star size={13} className="text-amber-400 fill-amber-400" />
+        <span className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-600">Host&rsquo;s Picks</span>
       </div>
-      <div className="flex gap-3 overflow-x-auto -mx-4 px-4 pb-1 no-scrollbar">
-        {featured.map((r: any) => (
-          <a
-            key={r.name}
-            href={r.mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-shrink-0 w-52 bg-white rounded-2xl shadow-sm border border-sand-100 overflow-hidden active:scale-[0.98] transition-transform"
-          >
-            <div className="h-28 bg-gradient-to-br from-ocean-400 to-ocean-600 flex items-end p-3">
-              <div>
-                <span className="text-[10px] font-black text-white/70 uppercase tracking-wider">{r.area?.split(",")[0]}</span>
+      <div className="flex gap-3 overflow-x-auto pl-4 pr-4 pb-1 no-scrollbar">
+        {picks.map((r: any, i: number) => {
+          const colors = ["from-ocean-500 to-ocean-700", "from-rose-400 to-rose-600", "from-violet-500 to-violet-700", "from-amber-400 to-amber-600"];
+          return (
+            <a
+              key={r.name}
+              href={r.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 w-44 rounded-2xl overflow-hidden shadow-card border border-sand-100 active:scale-[0.97] transition-transform bg-white"
+            >
+              <div className={`h-24 bg-gradient-to-br ${colors[i % colors.length]} flex flex-col justify-end p-3`}>
                 <p className="text-white font-display text-base leading-tight">{r.name}</p>
+                {r.area && <p className="text-white/60 text-[10px] font-medium mt-0.5">{r.area.split(",")[0]}</p>}
               </div>
-            </div>
-            <div className="p-3">
-              <div className="flex items-center justify-between mb-1.5">
-                {r.priceRange && <span className="text-xs font-bold text-slate-500">{r.priceRange}</span>}
-                <span className="text-[10px] text-ocean-500 font-bold ml-auto flex items-center gap-1">
-                  <MapPin size={9} /> Maps
+              <div className="p-3 flex items-center justify-between">
+                {r.priceRange
+                  ? <span className="text-xs font-bold text-slate-500">{r.priceRange}</span>
+                  : <span />
+                }
+                <span className="text-[10px] text-ocean-500 font-bold flex items-center gap-0.5">
+                  <MapPin size={9} />Maps
                 </span>
               </div>
-              <p className="text-xs text-slate-500 leading-snug line-clamp-2">{r.description}</p>
-            </div>
-          </a>
-        ))}
+            </a>
+          );
+        })}
       </div>
     </section>
   );
@@ -102,17 +96,19 @@ function StartHere() {
 // ─── Restaurants ─────────────────────────────────────────────────────────────
 
 function RestaurantsSection() {
-  const [activeCategory, setActiveCategory] = useState<string>("Best Overall");
+  const [activeCategory, setActiveCategory] = useState("Best Overall");
   const filtered = guide.restaurants.filter((r: any) => r.category === activeCategory);
 
   return (
-    <section id="restaurants" className="px-4 mb-12">
-      <SectionHeader
-        label="Where to eat"
-        title="Restaurants"
-        subtitle="Handpicked for every occasion — from a perfect date night to a quick beach bite."
-      />
-      <div className="flex gap-2 overflow-x-auto pb-2 mb-5 -mx-4 px-4 no-scrollbar">
+    <section id="restaurants" className="mb-12">
+      <div className="px-4">
+        <SectionHeader
+          label="Where to eat"
+          title="Restaurants"
+          subtitle="Handpicked for every occasion."
+        />
+      </div>
+      <div className="flex gap-2 overflow-x-auto pb-2 mb-5 pl-4 pr-4 no-scrollbar">
         {CATEGORY_ORDER.map((cat) => {
           const count = guide.restaurants.filter((r: any) => r.category === cat).length;
           if (count === 0) return null;
@@ -127,54 +123,56 @@ function RestaurantsSection() {
               }`}
             >
               {cat}
-              <span className={`ml-1 text-[10px] ${activeCategory === cat ? "text-slate-300" : "text-slate-400"}`}>
-                {count}
-              </span>
+              <span className={`ml-1 text-[10px] ${activeCategory === cat ? "text-slate-300" : "text-slate-400"}`}>{count}</span>
             </button>
           );
         })}
       </div>
-      <div className="space-y-4">
+      <div className="px-4 space-y-4">
         {filtered.map((r: any) => <RestaurantCard key={r.name} r={r} />)}
       </div>
     </section>
   );
 }
 
-// ─── Explore (combined things-to-do, attractions, nightlife, gems) ────────────
+// ─── Explore (tabbed: activities / attractions / nightlife / gems) ─────────────
+
+const EXPLORE_TABS = [
+  { id: "activities",  emoji: "🏄", label: "Things To Do" },
+  { id: "attractions", emoji: "🏛️", label: "Attractions"  },
+  { id: "nightlife",   emoji: "🌙", label: "Nightlife"    },
+  { id: "gems",        emoji: "💎", label: "Hidden Gems"  },
+] as const;
 
 function ExploreSection() {
-  const [tab, setTab] = useState<"activities"|"attractions"|"nightlife"|"gems">("activities");
-  const tabs = [
-    { id: "activities",  label: "🏄 Things To Do" },
-    { id: "attractions", label: "🏛️ Attractions" },
-    { id: "nightlife",   label: "🌙 Nightlife" },
-    { id: "gems",        label: "💎 Hidden Gems" },
-  ] as const;
+  const [tab, setTab] = useState<typeof EXPLORE_TABS[number]["id"]>("activities");
 
   return (
-    <section id="explore" className="px-4 mb-12">
-      <SectionHeader label="Get out" title="Explore" subtitle="The best of Palm Beach — from sunrise to late night." />
-      <div className="flex gap-2 overflow-x-auto pb-2 mb-5 -mx-4 px-4 no-scrollbar">
-        {tabs.map((t) => (
+    <section id="explore" className="mb-12">
+      <div className="px-4">
+        <SectionHeader label="Get out" title="Explore" subtitle="From sunrise to late night." />
+      </div>
+      <div className="flex gap-2 overflow-x-auto pb-2 mb-5 pl-4 pr-4 no-scrollbar">
+        {EXPLORE_TABS.map((t) => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
-            className={`flex-shrink-0 text-xs font-semibold px-3.5 py-1.5 rounded-full border transition-all ${
+            className={`flex-shrink-0 text-xs font-semibold px-3.5 py-1.5 rounded-full border transition-all flex items-center gap-1.5 ${
               tab === t.id
                 ? "bg-slate-800 text-white border-slate-800"
                 : "bg-white text-slate-600 border-slate-200 active:bg-slate-50"
             }`}
           >
+            <span>{t.emoji}</span>
             {t.label}
           </button>
         ))}
       </div>
-      <div className="space-y-4">
-        {tab === "activities"  && guide.thingsToDo.map((item: any)    => <ActivityCard    key={item.title} item={item} />)}
-        {tab === "attractions" && guide.attractions.map((item: any)   => <AttractionCard key={item.name}  item={item} />)}
-        {tab === "nightlife"   && guide.nightlife.map((spot: any)     => <NightlifeCard  key={spot.name}  spot={spot} />)}
-        {tab === "gems"        && guide.hiddenGems.map((gem: any)     => <GemCard        key={gem.name}   gem={gem}  />)}
+      <div className="px-4 space-y-4">
+        {tab === "activities"  && guide.thingsToDo.map((item: any)  => <ActivityCard    key={item.title} item={item} />)}
+        {tab === "attractions" && guide.attractions.map((item: any) => <AttractionCard  key={item.name}  item={item} />)}
+        {tab === "nightlife"   && guide.nightlife.map((spot: any)   => <NightlifeCard   key={spot.name}  spot={spot} />)}
+        {tab === "gems"        && guide.hiddenGems.map((gem: any)   => <GemCard         key={gem.name}   gem={gem}   />)}
       </div>
     </section>
   );
@@ -198,39 +196,40 @@ function HouseInfoSection() {
   return (
     <section id="house-info" className="px-4 mb-12">
       <SectionHeader label="Guest essentials" title="Your Stay" subtitle="Everything you need for a smooth stay." />
-      <div className="space-y-4">
+      <div className="space-y-3">
+
         {/* Address */}
         <a
           href={guide.property.mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 bg-white rounded-2xl p-5 shadow-sm border border-sand-100 active:bg-sand-50 transition-colors"
+          className="flex items-center gap-4 bg-white rounded-2xl p-4 shadow-sm border border-sand-100 active:bg-sand-50 transition-colors"
         >
           <div className="w-10 h-10 rounded-xl bg-ocean-50 flex items-center justify-center flex-shrink-0">
             <MapPin size={18} className="text-ocean-500" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-0.5">Your address</p>
-            <p className="text-sm font-semibold text-slate-800">{guide.property.address}</p>
-            <p className="text-xs text-slate-500">{guide.property.city}</p>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-0.5">Address</p>
+            <p className="text-sm font-semibold text-slate-800">{guide.property.address}{guide.property.unit ? `, ${guide.property.unit}` : ""}</p>
+            <p className="text-xs text-slate-400">{guide.property.city}</p>
           </div>
-          <span className="text-xs text-ocean-500 font-semibold flex-shrink-0">Directions →</span>
+          <span className="text-xs text-ocean-500 font-bold flex-shrink-0">Directions →</span>
         </a>
 
         {/* WiFi */}
-        <div className="bg-white rounded-2xl p-5 shadow-sm border border-sand-100">
+        <div className="bg-white rounded-2xl p-4 shadow-sm border border-sand-100">
           <div className="flex items-center gap-2 mb-3">
-            <Wifi size={16} className="text-ocean-500" />
-            <span className="font-semibold text-sm text-slate-700">Wi-Fi</span>
+            <Wifi size={15} className="text-ocean-500" />
+            <span className="font-bold text-sm text-slate-700">Wi-Fi</span>
           </div>
-          <div className="flex items-center gap-3 bg-sand-50 rounded-xl p-3.5">
+          <div className="flex items-center gap-3 bg-sand-50 rounded-xl p-3">
             <div className="flex-1 min-w-0">
-              <p className="text-[10px] text-slate-400 uppercase font-semibold mb-0.5">Network</p>
+              <p className="text-[10px] text-slate-400 uppercase font-bold mb-0.5">Network</p>
               <p className="text-sm font-mono font-semibold text-slate-800 truncate">{h.wifi.name}</p>
             </div>
             <div className="h-8 w-px bg-sand-200 flex-shrink-0" />
             <div className="flex-1 min-w-0">
-              <p className="text-[10px] text-slate-400 uppercase font-semibold mb-0.5">Password</p>
+              <p className="text-[10px] text-slate-400 uppercase font-bold mb-0.5">Password</p>
               <p className="text-sm font-mono font-semibold text-slate-800 truncate">{h.wifi.password}</p>
             </div>
             <button
@@ -243,45 +242,45 @@ function HouseInfoSection() {
               {wifiCopied ? <Check size={16} /> : <Copy size={16} />}
             </button>
           </div>
-          {wifiCopied && <p className="text-xs text-emerald-600 font-medium text-center mt-2">Password copied!</p>}
+          {wifiCopied && <p className="text-xs text-emerald-600 font-medium text-center mt-2">Copied!</p>}
         </div>
 
         {/* Parking */}
-        <div className="bg-white rounded-2xl p-5 shadow-sm border border-sand-100">
-          <div className="flex items-center gap-2 mb-2">
-            <Car size={16} className="text-slate-500" />
-            <span className="font-semibold text-sm text-slate-700">Parking</span>
+        <div className="bg-white rounded-2xl p-4 shadow-sm border border-sand-100">
+          <div className="flex items-center gap-2 mb-1.5">
+            <Car size={15} className="text-slate-500" />
+            <span className="font-bold text-sm text-slate-700">Parking</span>
           </div>
-          <p className="text-sm text-slate-600 leading-relaxed">{h.parking}</p>
+          <p className="text-sm text-slate-500 leading-relaxed">{h.parking}</p>
         </div>
 
         {/* Check-out */}
-        <div className="bg-white rounded-2xl p-5 shadow-sm border border-sand-100">
+        <div className="bg-white rounded-2xl p-4 shadow-sm border border-sand-100">
           <div className="flex items-center gap-2 mb-3">
-            <Clock size={16} className="text-amber-500" />
-            <span className="font-semibold text-sm text-slate-700">Check-out: {h.checkoutTime}</span>
+            <Clock size={15} className="text-amber-500" />
+            <span className="font-bold text-sm text-slate-700">Check-out: {h.checkoutTime}</span>
           </div>
           <ul className="space-y-1.5">
-            {h.checkoutReminders.map((r: string, i: number) => (
-              <li key={i} className="text-sm text-slate-600 flex items-start gap-2">
-                <span className="text-palm-400 mt-0.5 flex-shrink-0">✓</span>
-                {r}
+            {h.checkoutReminders.map((reminder: string, i: number) => (
+              <li key={i} className="text-sm text-slate-500 flex items-start gap-2">
+                <span className="text-emerald-400 mt-0.5 flex-shrink-0">✓</span>
+                {reminder}
               </li>
             ))}
           </ul>
         </div>
 
         {/* Important notes */}
-        <div className="bg-amber-50 rounded-2xl p-5 border border-amber-100">
-          <div className="flex items-center gap-2 mb-3">
-            <Info size={15} className="text-amber-600" />
-            <p className="text-xs font-bold uppercase tracking-wide text-amber-600">Important notes</p>
+        <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100">
+          <div className="flex items-center gap-2 mb-2.5">
+            <Info size={14} className="text-amber-600" />
+            <p className="text-[10px] font-black uppercase tracking-widest text-amber-600">Important</p>
           </div>
           <ul className="space-y-2">
-            {h.importantNotes.map((n: string, i: number) => (
+            {h.importantNotes.map((note: string, i: number) => (
               <li key={i} className="text-sm text-slate-700 flex items-start gap-2">
-                <span className="text-amber-500 flex-shrink-0 mt-0.5">•</span>
-                {n}
+                <span className="text-amber-400 flex-shrink-0 mt-0.5">•</span>
+                {note}
               </li>
             ))}
           </ul>
@@ -290,20 +289,23 @@ function HouseInfoSection() {
         {/* Contact host */}
         <a
           href={`sms:${h.contactHost.match(/\(?\d[\d\s\-().+]{7,}/)?.[0] ?? ""}`}
-          className="block bg-slate-900 rounded-2xl p-5 text-white active:opacity-90 transition-opacity"
+          className="block rounded-2xl p-4 text-white active:opacity-90 transition-opacity"
+          style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)" }}
         >
-          <div className="flex items-center gap-2 mb-2">
-            <MessageCircle size={16} className="text-ocean-300" />
-            <span className="font-semibold text-sm">Contact Host</span>
+          <div className="flex items-center gap-2 mb-1.5">
+            <MessageCircle size={15} className="text-ocean-300" />
+            <span className="font-bold text-sm">Contact Host</span>
           </div>
-          <p className="text-sm text-slate-300 mb-3">{h.contactHost}</p>
-          <p className="text-xs text-slate-500 border-t border-slate-700 pt-3">{h.emergency}</p>
+          <p className="text-sm text-slate-300">{h.contactHost}</p>
+          <p className="text-xs text-slate-500 border-t border-slate-700/50 pt-3 mt-3">{h.emergency}</p>
         </a>
 
         {/* Host thoughts */}
-        <div className="space-y-3">
-          <p className="text-xs font-black uppercase tracking-widest text-slate-400 px-1">From your host</p>
-          {guide.personalThoughts.map((t: any) => <ThoughtCard key={t.label} t={t} />)}
+        <div className="pt-2">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3 px-1">From your host</p>
+          <div className="space-y-3">
+            {guide.personalThoughts.map((t: any) => <ThoughtCard key={t.label} t={t} />)}
+          </div>
         </div>
       </div>
     </section>
@@ -316,30 +318,28 @@ function BottomNav() {
   const [active, setActive] = React.useState("top");
 
   const scrollTo = (id: string) => {
-    if (id === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (id === "top") window.scrollTo({ top: 0, behavior: "smooth" });
+    else document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setActive(id);
   };
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 max-w-lg mx-auto">
-      <div className="bg-white border-t-2 border-slate-100 pb-safe-bottom">
+      <div className="bg-white border-t border-slate-100 pb-safe-bottom shadow-[0_-1px_12px_rgba(0,0,0,0.06)]">
         <div className="flex">
           {BOTTOM_NAV.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
               onClick={() => scrollTo(id)}
-              className={`flex-1 flex flex-col items-center justify-center py-2.5 gap-1 transition-all ${
+              className={`flex-1 flex flex-col items-center justify-center py-2.5 gap-1 transition-colors ${
                 active === id ? "text-ocean-600" : "text-slate-400"
               }`}
             >
-              <Icon size={active === id ? 20 : 18} strokeWidth={active === id ? 2.5 : 2} />
+              <Icon size={20} strokeWidth={active === id ? 2.5 : 1.8} />
               <span className={`text-[10px] font-bold leading-none ${active === id ? "text-ocean-600" : "text-slate-400"}`}>
                 {label}
               </span>
+              {active === id && <span className="w-1 h-1 rounded-full bg-ocean-500 mt-0.5" />}
             </button>
           ))}
         </div>
@@ -348,7 +348,7 @@ function BottomNav() {
   );
 }
 
-// ─── Share button ─────────────────────────────────────────────────────────────
+// ─── Share Button ─────────────────────────────────────────────────────────────
 
 function ShareButton() {
   const [shared, setShared] = useState(false);
@@ -365,9 +365,9 @@ function ShareButton() {
   return (
     <button
       onClick={handleShare}
-      className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/20 text-white text-xs font-semibold backdrop-blur-sm active:bg-white/30 transition-all"
+      className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/20 text-white text-xs font-semibold active:bg-white/25 transition-all"
     >
-      {shared ? <Check size={13} /> : <Share2 size={13} />}
+      {shared ? <Check size={12} /> : <Share2 size={12} />}
       {shared ? "Copied!" : "Share"}
     </button>
   );
@@ -380,51 +380,87 @@ export default function Page() {
     <>
       <main className="min-h-screen bg-sand-50 max-w-lg mx-auto pb-24">
         <div id="top" />
-        {/* Hero */}
+
+        {/* ── Hero ── */}
         <section
-          className="relative overflow-hidden px-6 pt-14 pb-16 text-white"
-          style={{ background: "linear-gradient(160deg, #155e6a 0%, #1f7d8e 40%, #3d9aaa 80%, #6cb8c2 100%)" }}
+          className="relative overflow-hidden px-6 pt-12 pb-14 text-white"
+          style={{ background: "linear-gradient(155deg, #0e4a54 0%, #1f7d8e 45%, #3d9aaa 80%, #6cb8c2 100%)" }}
         >
-          <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/5" />
-          <div className="absolute -bottom-10 -left-16 w-48 h-48 rounded-full bg-white/5" />
+          {/* Decorative circles */}
+          <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-white/5" />
+          <div className="absolute top-8 -right-8 w-32 h-32 rounded-full bg-white/5" />
+          <div className="absolute -bottom-12 -left-12 w-44 h-44 rounded-full bg-white/5" />
+
           <div className="relative z-10">
-            <div className="flex items-center justify-between mb-5">
-              <a href={guide.property.mapsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 active:opacity-70 transition-opacity">
-                <MapPin size={14} className="text-ocean-200" />
-                <span className="text-xs font-semibold tracking-wider text-ocean-200 uppercase">West Palm Beach, FL</span>
+            <div className="flex items-center justify-between mb-6">
+              <a href={guide.property.mapsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 active:opacity-70">
+                <MapPin size={13} className="text-white/50" />
+                <span className="text-xs font-semibold text-white/60 tracking-wider">West Palm Beach, FL</span>
               </a>
               <ShareButton />
             </div>
-            <h1 className="font-display text-5xl text-white mb-3 leading-[1.1]">{guide.hero.greeting}</h1>
-            <p className="text-white/85 text-lg leading-relaxed font-light">{guide.hero.tagline}</p>
+
+            <h1 className="font-display text-4xl text-white mb-2.5 leading-tight">{guide.hero.greeting}</h1>
+            <p className="text-white/75 text-base leading-relaxed mb-6">{guide.hero.tagline}</p>
+
+            {/* Content-type tag row */}
+            <div className="flex gap-2 flex-wrap">
+              {[
+                { emoji: "🍽️", label: "Food" },
+                { emoji: "🏄", label: "Activities" },
+                { emoji: "🌙", label: "Nightlife" },
+                { emoji: "🏠", label: "House Info" },
+              ].map(({ emoji, label }) => (
+                <span key={label} className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-white/80 text-xs font-medium">
+                  {emoji} {label}
+                </span>
+              ))}
+            </div>
           </div>
+
+          {/* Wave divider */}
           <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 375 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-              <path d="M0 40V20C60 10 120 40 187.5 20C255 0 315 30 375 20V40H0Z" fill="#faf7f2" />
+            <svg viewBox="0 0 375 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block">
+              <path d="M0 32V16C60 6 120 28 187.5 14C255 0 315 22 375 14V32H0Z" fill="#faf7f2" />
             </svg>
           </div>
         </section>
 
-        <div className="pt-6">
+        {/* ── Content ── */}
+        <div className="pt-5">
           <QuickActions />
-          <StartHere />
+          <HostPicks />
 
-          {/* Photos */}
-          <section id="photos" className="px-4 mb-12">
-            <SectionHeader label="Take a look" title="Photos" subtitle="The apartment and the area — tap any photo to view full screen." />
-            <PhotoGallery apartmentPhotos={guide.photos.apartmentPhotos} areaPhotos={guide.photos.areaPhotos} />
-          </section>
+          {/* Photos — slightly warm background band */}
+          <div className="bg-sand-100/60 py-10 mb-0">
+            <section id="photos" className="px-4">
+              <SectionHeader label="Take a look" title="Photos" subtitle="The apartment and the area." />
+              <PhotoGallery apartmentPhotos={guide.photos.apartmentPhotos} areaPhotos={guide.photos.areaPhotos} />
+            </section>
+          </div>
 
-          <RestaurantsSection />
-          <ExploreSection />
-          <HouseInfoSection />
+          {/* Restaurants — white */}
+          <div className="bg-white py-10">
+            <RestaurantsSection />
+          </div>
 
-          <footer className="px-4 pb-6 text-center">
-            <div className="w-12 h-px bg-sand-200 mx-auto mb-4" />
-            <p className="text-xs text-slate-400">Enjoy your stay · Palm Beach, Florida</p>
+          {/* Explore — sand */}
+          <div className="bg-sand-50 py-10">
+            <ExploreSection />
+          </div>
+
+          {/* Stay — white */}
+          <div className="bg-white py-10">
+            <HouseInfoSection />
+          </div>
+
+          <footer className="bg-sand-50 px-4 py-8 text-center">
+            <div className="w-8 h-px bg-sand-300 mx-auto mb-3" />
+            <p className="text-xs text-slate-400">Enjoy your stay &middot; Palm Beach, Florida</p>
           </footer>
         </div>
       </main>
+
       <BottomNav />
     </>
   );
