@@ -16,18 +16,18 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Palm Beach Local Guide",
-  description: "Your curated local guide — food, activities, and hidden gems in Palm Beach, FL",
+  title: "West Palm Beach Local Guide",
+  description: "Your curated local guide for West Palm Beach and Palm Beach — restaurants, hidden gems, and local tips from your host at 651 Okeechobee Blvd.",
   openGraph: {
-    title: "Palm Beach Local Guide",
-    description: "Curated restaurants, hidden gems, and local tips from your host.",
+    title: "West Palm Beach & Palm Beach Local Guide",
+    description: "Curated restaurants, hidden gems, and local tips from your host at 651 Okeechobee Blvd.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Palm Beach Local Guide",
-    description: "Curated restaurants, hidden gems, and local tips from your host.",
+    title: "West Palm Beach & Palm Beach Local Guide",
+    description: "Curated restaurants, hidden gems, and local tips from your host at 651 Okeechobee Blvd.",
   },
 };
 
