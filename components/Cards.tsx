@@ -1,7 +1,5 @@
 // components/Cards.tsx
-// Improved: better visual hierarchy, consistent shadows, warmer colors
-
-import { Clock } from "lucide-react";
+import { Clock, MapPin } from "lucide-react";
 import type { Activity, Attraction, NightlifeSpot, HiddenGem, PersonalThought } from "@/data/guide";
 
 // ─── Activity Card ────────────────────────────────────────────────────────────
@@ -14,16 +12,16 @@ export function ActivityCard({ item }: { item: Activity }) {
       rel="noopener noreferrer"
       className="block bg-white rounded-2xl p-5 shadow-card border border-sand-100/80 active:scale-[0.98] transition-transform"
     >
-      <h3 className="font-display text-lg text-slate-800 leading-snug mb-1.5">{item.title}</h3>
+      <h3 className="font-display text-xl text-slate-800 leading-snug mb-1.5">{item.title}</h3>
       <p className="text-sm text-slate-500 leading-relaxed mb-3">{item.description}</p>
-      <div className="bg-ocean-50 rounded-xl px-3.5 py-3 mb-3">
-        <p className="text-2xs font-black text-ocean-500 mb-1 uppercase tracking-widest">Why go</p>
+      <div className="bg-ocean-50 rounded-xl px-3.5 py-3 border border-ocean-100/60 mb-3">
+        <p className="text-[10px] font-black text-ocean-500 mb-1 uppercase tracking-widest">Why go</p>
         <p className="text-sm text-slate-700 leading-relaxed">{item.why}</p>
       </div>
       {item.bestTime && (
         <span className="text-xs text-slate-400 flex items-center gap-1.5">
           <Clock size={11} className="text-sand-400" />
-          Best time: <span className="text-slate-600">{item.bestTime}</span>
+          Best time: <span className="text-slate-600 font-medium">{item.bestTime}</span>
         </span>
       )}
     </a>
@@ -40,12 +38,15 @@ export function AttractionCard({ item }: { item: Attraction }) {
       rel="noopener noreferrer"
       className="block bg-white rounded-2xl p-5 shadow-card border border-sand-100/80 active:scale-[0.98] transition-transform"
     >
-      <h3 className="font-display text-lg text-slate-800 leading-snug mb-1.5">{item.name}</h3>
+      <h3 className="font-display text-xl text-slate-800 leading-snug mb-1.5">{item.name}</h3>
       <p className="text-sm text-slate-500 leading-relaxed mb-2">{item.description}</p>
       <p className="text-sm text-slate-700 leading-relaxed">{item.why}</p>
       {item.tip && (
         <div className="mt-3 pt-3 border-t border-sand-100">
-          <p className="text-xs text-ocean-600 font-medium">💡 {item.tip}</p>
+          <p className="text-xs text-ocean-600 font-semibold flex items-start gap-1.5">
+            <span className="mt-0.5 flex-shrink-0">💡</span>
+            {item.tip}
+          </p>
         </div>
       )}
     </a>
@@ -53,7 +54,6 @@ export function AttractionCard({ item }: { item: Attraction }) {
 }
 
 // ─── Nightlife Card ───────────────────────────────────────────────────────────
-// Deep dusk palette — warmer dark than pure slate-900
 
 export function NightlifeCard({ spot }: { spot: NightlifeSpot }) {
   return (
@@ -61,17 +61,17 @@ export function NightlifeCard({ spot }: { spot: NightlifeSpot }) {
       href={spot.mapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block rounded-2xl p-5 active:scale-[0.98] transition-transform"
+      className="block rounded-2xl p-5 active:scale-[0.98] transition-transform overflow-hidden"
       style={{ background: "linear-gradient(135deg, #1a1b2e 0%, #0f1824 100%)" }}
     >
-      <h3 className="font-display text-lg text-white leading-snug mb-1.5">{spot.name}</h3>
-      <p className="text-sm leading-relaxed mb-2" style={{ color: "rgba(255,255,255,0.65)" }}>{spot.vibe}</p>
+      <h3 className="font-display text-xl text-white leading-snug mb-1.5">{spot.name}</h3>
+      <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>{spot.vibe}</p>
       <div className="flex items-center justify-between">
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-          Best for: <span style={{ color: "rgba(255,255,255,0.65)" }}>{spot.bestFor}</span>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+          Best for: <span style={{ color: "rgba(255,255,255,0.6)" }}>{spot.bestFor}</span>
         </p>
         {spot.reservationNote && (
-          <p className="text-xs text-amber-400 font-medium">📅 Reserve ahead</p>
+          <span className="text-xs text-amber-400 font-semibold">Reserve ahead</span>
         )}
       </div>
     </a>
@@ -79,21 +79,17 @@ export function NightlifeCard({ spot }: { spot: NightlifeSpot }) {
 }
 
 // ─── Hidden Gem Card ──────────────────────────────────────────────────────────
-// Warm sand gradient — feels discovered/special
 
 export function GemCard({ gem }: { gem: HiddenGem }) {
   const inner = (
     <div
       className="rounded-2xl p-5 border"
-      style={{
-        background: "linear-gradient(135deg, #faf7f2 0%, #f0ece3 100%)",
-        borderColor: "#e8d8bc",
-      }}
+      style={{ background: "linear-gradient(135deg, #faf7f2 0%, #f0ece3 100%)", borderColor: "#e8d8bc" }}
     >
       <div className="flex items-start gap-3 mb-3">
-        <span className="text-xl mt-0.5">💎</span>
+        <span className="text-2xl mt-0.5 flex-shrink-0">💎</span>
         <div>
-          <h3 className="font-display text-lg text-slate-800 leading-snug">{gem.name}</h3>
+          <h3 className="font-display text-xl text-slate-800 leading-snug">{gem.name}</h3>
           <p className="text-sm text-slate-500 leading-relaxed mt-0.5">{gem.description}</p>
         </div>
       </div>
@@ -110,20 +106,19 @@ export function GemCard({ gem }: { gem: HiddenGem }) {
       </a>
     );
   }
-  return <div className="block">{inner}</div>;
+  return <div>{inner}</div>;
 }
 
 // ─── Personal Thought Card ────────────────────────────────────────────────────
-// Warm white with left accent border — editorial feel
 
 export function ThoughtCard({ t }: { t: PersonalThought }) {
   const inner = (
     <div className="bg-white rounded-2xl shadow-card border border-sand-100/80 overflow-hidden flex">
-      <div className="w-1 flex-shrink-0 rounded-l-2xl" style={{ background: "linear-gradient(180deg, #c8a06a, #b58240)" }} />
+      <div className="w-1 flex-shrink-0" style={{ background: "linear-gradient(180deg, #c8a06a, #b58240)" }} />
       <div className="flex-1 p-5">
-        <p className="text-2xs font-black uppercase tracking-[0.15em] text-sand-400 mb-1.5">{t.label}</p>
-        <p className="font-display text-lg text-slate-800 leading-snug mb-2">{t.place}</p>
-        <p className="text-sm text-slate-500 leading-relaxed italic">"{t.note}"</p>
+        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-sand-400 mb-1">{t.label}</p>
+        <p className="font-display text-lg text-slate-800 leading-snug mb-1.5">{t.place}</p>
+        <p className="text-sm text-slate-500 leading-relaxed italic">&ldquo;{t.note}&rdquo;</p>
       </div>
     </div>
   );
@@ -135,5 +130,5 @@ export function ThoughtCard({ t }: { t: PersonalThought }) {
       </a>
     );
   }
-  return <div className="block">{inner}</div>;
+  return <div>{inner}</div>;
 }
