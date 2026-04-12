@@ -62,21 +62,18 @@ function QuickActions() {
   return (
     <section className="px-4 mb-8">
       <div className="grid grid-cols-2 gap-3">
-        {guide.quickActions.slice(0, 4).map((action) => {
-          const Icon = ICON_MAP[action.icon];
-          return (
-            <a
-              key={action.label}
-              href={action.href}
-              className="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-card border border-sand-100/80 active:scale-[0.97] transition-transform"
-            >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${action.accent ?? "bg-slate-700"}`}>
-                {Icon && <Icon size={18} className="text-white" />}
-              </div>
-              <span className="text-sm font-semibold text-slate-800">{action.label}</span>
-            </a>
-          );
-        })}
+        {guide.quickActions.slice(0, 4).map((action: any) => (
+          <a
+            key={action.label}
+            href={action.href}
+            className="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-card border border-sand-100/80 active:scale-[0.97] transition-transform"
+          >
+            <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl ${action.accent ?? "bg-slate-700"}`}>
+              {action.emoji ?? '⭐'}
+            </div>
+            <span className="text-sm font-semibold text-slate-800 leading-tight">{action.label}</span>
+          </a>
+        ))}
       </div>
     </section>
   );
