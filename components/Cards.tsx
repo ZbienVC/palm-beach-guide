@@ -1,6 +1,10 @@
-// components/ActivityCard.tsx
-import { MapPin, Clock } from "lucide-react";
-import type { Activity } from "@/data/guide";
+// components/Cards.tsx
+// Improved: better visual hierarchy, consistent shadows, warmer colors
+
+import { Clock } from "lucide-react";
+import type { Activity, Attraction, NightlifeSpot, HiddenGem, PersonalThought } from "@/data/guide";
+
+// ─── Activity Card ────────────────────────────────────────────────────────────
 
 export function ActivityCard({ item }: { item: Activity }) {
   return (
@@ -8,25 +12,25 @@ export function ActivityCard({ item }: { item: Activity }) {
       href={item.mapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-white rounded-2xl p-5 shadow-sm border border-sand-100 active:bg-sand-50 transition-colors"
+      className="block bg-white rounded-2xl p-5 shadow-card border border-sand-100/80 active:scale-[0.98] transition-transform"
     >
-      <h3 className="font-display text-[17px] text-slate-800 mb-1.5">{item.title}</h3>
-      <p className="text-sm text-slate-600 leading-relaxed mb-3">{item.description}</p>
-      <div className="bg-ocean-50 rounded-xl p-3 mb-3">
-        <p className="text-xs font-semibold text-ocean-600 mb-0.5 uppercase tracking-wide">Why go</p>
+      <h3 className="font-display text-lg text-slate-800 leading-snug mb-1.5">{item.title}</h3>
+      <p className="text-sm text-slate-500 leading-relaxed mb-3">{item.description}</p>
+      <div className="bg-ocean-50 rounded-xl px-3.5 py-3 mb-3">
+        <p className="text-2xs font-black text-ocean-500 mb-1 uppercase tracking-widest">Why go</p>
         <p className="text-sm text-slate-700 leading-relaxed">{item.why}</p>
       </div>
       {item.bestTime && (
-        <span className="text-xs text-slate-400 flex items-center gap-1">
-          <Clock size={11} /> Best time: {item.bestTime}
+        <span className="text-xs text-slate-400 flex items-center gap-1.5">
+          <Clock size={11} className="text-sand-400" />
+          Best time: <span className="text-slate-600">{item.bestTime}</span>
         </span>
       )}
     </a>
   );
 }
 
-// components/AttractionCard.tsx
-import type { Attraction } from "@/data/guide";
+// ─── Attraction Card ──────────────────────────────────────────────────────────
 
 export function AttractionCard({ item }: { item: Attraction }) {
   return (
@@ -34,22 +38,22 @@ export function AttractionCard({ item }: { item: Attraction }) {
       href={item.mapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-white rounded-2xl p-5 shadow-sm border border-sand-100 active:bg-sand-50 transition-colors"
+      className="block bg-white rounded-2xl p-5 shadow-card border border-sand-100/80 active:scale-[0.98] transition-transform"
     >
-      <h3 className="font-display text-[17px] text-slate-800 mb-1.5">{item.name}</h3>
-      <p className="text-sm text-slate-600 leading-relaxed mb-2">{item.description}</p>
-      <p className="text-sm text-slate-700 mb-2">{item.why}</p>
+      <h3 className="font-display text-lg text-slate-800 leading-snug mb-1.5">{item.name}</h3>
+      <p className="text-sm text-slate-500 leading-relaxed mb-2">{item.description}</p>
+      <p className="text-sm text-slate-700 leading-relaxed">{item.why}</p>
       {item.tip && (
-        <div className="mt-2 pt-2 border-t border-sand-100">
-          <p className="text-xs text-palm-700 font-medium">💡 {item.tip}</p>
+        <div className="mt-3 pt-3 border-t border-sand-100">
+          <p className="text-xs text-ocean-600 font-medium">💡 {item.tip}</p>
         </div>
       )}
     </a>
   );
 }
 
-// components/NightlifeCard.tsx
-import type { NightlifeSpot } from "@/data/guide";
+// ─── Nightlife Card ───────────────────────────────────────────────────────────
+// Deep dusk palette — warmer dark than pure slate-900
 
 export function NightlifeCard({ spot }: { spot: NightlifeSpot }) {
   return (
@@ -57,27 +61,43 @@ export function NightlifeCard({ spot }: { spot: NightlifeSpot }) {
       href={spot.mapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-slate-900 rounded-2xl p-5 active:bg-slate-800 transition-colors"
+      className="block rounded-2xl p-5 active:scale-[0.98] transition-transform"
+      style={{ background: "linear-gradient(135deg, #1a1b2e 0%, #0f1824 100%)" }}
     >
-      <h3 className="font-display text-[17px] text-white mb-1.5">{spot.name}</h3>
-      <p className="text-sm text-slate-300 leading-relaxed mb-2">{spot.vibe}</p>
-      <p className="text-xs text-slate-400 mb-2">Best for: <span className="text-slate-300">{spot.bestFor}</span></p>
-      {spot.reservationNote && (
-        <p className="text-xs text-amber-400">📅 {spot.reservationNote}</p>
-      )}
+      <h3 className="font-display text-lg text-white leading-snug mb-1.5">{spot.name}</h3>
+      <p className="text-sm leading-relaxed mb-2" style={{ color: "rgba(255,255,255,0.65)" }}>{spot.vibe}</p>
+      <div className="flex items-center justify-between">
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+          Best for: <span style={{ color: "rgba(255,255,255,0.65)" }}>{spot.bestFor}</span>
+        </p>
+        {spot.reservationNote && (
+          <p className="text-xs text-amber-400 font-medium">📅 Reserve ahead</p>
+        )}
+      </div>
     </a>
   );
 }
 
-// components/GemCard.tsx
-import type { HiddenGem } from "@/data/guide";
+// ─── Hidden Gem Card ──────────────────────────────────────────────────────────
+// Warm sand gradient — feels discovered/special
 
 export function GemCard({ gem }: { gem: HiddenGem }) {
   const inner = (
-    <div className="bg-gradient-to-br from-palm-50 to-ocean-50 rounded-2xl p-5 border border-palm-100">
-      <h3 className="font-display text-[17px] text-slate-800 mb-1.5">{gem.name}</h3>
-      <p className="text-sm text-slate-600 leading-relaxed mb-2">{gem.description}</p>
-      <div className="bg-white/70 rounded-xl p-3">
+    <div
+      className="rounded-2xl p-5 border"
+      style={{
+        background: "linear-gradient(135deg, #faf7f2 0%, #f0ece3 100%)",
+        borderColor: "#e8d8bc",
+      }}
+    >
+      <div className="flex items-start gap-3 mb-3">
+        <span className="text-xl mt-0.5">💎</span>
+        <div>
+          <h3 className="font-display text-lg text-slate-800 leading-snug">{gem.name}</h3>
+          <p className="text-sm text-slate-500 leading-relaxed mt-0.5">{gem.description}</p>
+        </div>
+      </div>
+      <div className="bg-white/80 rounded-xl px-3.5 py-3 border border-sand-200/60">
         <p className="text-sm text-slate-700 leading-relaxed">{gem.why}</p>
       </div>
     </div>
@@ -85,32 +105,35 @@ export function GemCard({ gem }: { gem: HiddenGem }) {
 
   if (gem.mapsUrl) {
     return (
-      <a href={gem.mapsUrl} target="_blank" rel="noopener noreferrer" className="block active:opacity-80 transition-opacity">
+      <a href={gem.mapsUrl} target="_blank" rel="noopener noreferrer" className="block active:scale-[0.98] transition-transform">
         {inner}
       </a>
     );
   }
-  return inner;
+  return <div className="block">{inner}</div>;
 }
 
-// components/ThoughtCard.tsx
-import type { PersonalThought } from "@/data/guide";
+// ─── Personal Thought Card ────────────────────────────────────────────────────
+// Warm white with left accent border — editorial feel
 
 export function ThoughtCard({ t }: { t: PersonalThought }) {
   const inner = (
-    <div className="bg-white rounded-2xl p-5 shadow-sm border border-sand-100">
-      <p className="text-xs font-bold uppercase tracking-[0.12em] text-sand-400 mb-1">{t.label}</p>
-      <p className="font-display text-[17px] text-slate-800 mb-2">{t.place}</p>
-      <p className="text-sm text-slate-600 leading-relaxed italic">"{t.note}"</p>
+    <div className="bg-white rounded-2xl shadow-card border border-sand-100/80 overflow-hidden flex">
+      <div className="w-1 flex-shrink-0 rounded-l-2xl" style={{ background: "linear-gradient(180deg, #c8a06a, #b58240)" }} />
+      <div className="flex-1 p-5">
+        <p className="text-2xs font-black uppercase tracking-[0.15em] text-sand-400 mb-1.5">{t.label}</p>
+        <p className="font-display text-lg text-slate-800 leading-snug mb-2">{t.place}</p>
+        <p className="text-sm text-slate-500 leading-relaxed italic">"{t.note}"</p>
+      </div>
     </div>
   );
 
   if (t.mapsUrl) {
     return (
-      <a href={t.mapsUrl} target="_blank" rel="noopener noreferrer" className="block active:opacity-80 transition-opacity">
+      <a href={t.mapsUrl} target="_blank" rel="noopener noreferrer" className="block active:scale-[0.98] transition-transform">
         {inner}
       </a>
     );
   }
-  return inner;
+  return <div className="block">{inner}</div>;
 }
