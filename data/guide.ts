@@ -289,6 +289,7 @@ export const guide: GuideData = {
       description: "Lively Mexican restaurant with scratch-made tortillas, tacos, and a serious agave program",
       why: "Fresh, organic ingredients and house-made everything. The margaritas are excellent and happy hour is a steal.",
       area: "Rosemary Square, West Palm Beach",
+      walkMins: 5,
       mapsUrl: "https://maps.app.goo.gl/8BTX4GQ6z94x8Yeu9",
       priceRange: "$$",
       hostNote: "Get the street corn and a frozen marg. Outdoor seating is great on a nice evening.",
@@ -296,6 +297,7 @@ export const guide: GuideData = {
     {
       name: "Sloan\u2019s",
       category: "Dessert / Sweet Treats",
+      walkMins: 5,
       description: "Over-the-top ice cream wonderland with homemade flavors, a candy wall, and pink-everything decor",
       why: "A Palm Beach icon. The sundaes are ridiculous in the best way. Bring kids or just embrace your inner child.",
       area: "West Palm Beach",
@@ -316,6 +318,7 @@ export const guide: GuideData = {
     {
       name: "Sour Seed Bagels",
       category: "Breakfast / Coffee",
+      walkMins: 10,
       description: "Artisan bagel shop with house-fermented sourdough bagels and creative spreads",
       why: "Proper bagels in South Florida \u2014 rare and worth it. The sourdough process gives them a depth most bagel shops miss.",
       area: "West Palm Beach",
@@ -326,6 +329,7 @@ export const guide: GuideData = {
     {
       name: "The Salty Donut",
       category: "Breakfast / Coffee",
+      walkMins: 8,
       description: "Artisan donut shop with rotating craft flavors and excellent coffee",
       why: "These are not Dunkin. Seasonal, thoughtful, and genuinely delicious. A great stop before or after the beach.",
       area: "West Palm Beach",
@@ -337,6 +341,7 @@ export const guide: GuideData = {
       name: "Harry\u2019s",
       category: "Nice Dinner / Date Night",
       description: "Upscale coastal restaurant with an impressive wine list and refined American menu",
+      walkMins: 28,
       why: "One of the finest dining experiences in the area. Polished service, beautiful room, exceptional food.",
       area: "Palm Beach",
       mapsUrl: "https://maps.app.goo.gl/T6QDisX4BZYR5YEy8",
@@ -347,6 +352,7 @@ export const guide: GuideData = {
     {
       name: "Peachwave",
       category: "Dessert / Sweet Treats",
+      walkMins: 6,
       description: "Self-serve frozen yogurt with a huge topping bar \u2014 pay by weight",
       why: "Light, refreshing, and completely guilt-free (or not, depending on your topping choices). Perfect after a beach day.",
       area: "West Palm Beach",
