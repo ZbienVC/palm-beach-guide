@@ -51,7 +51,7 @@ function QuickActions() {
             <a
               key={action.label}
               href={action.href}
-              className={`${action.accent ?? "bg-slate-700"} rounded-2xl p-4 flex flex-col items-center justify-center gap-2 text-white active:scale-95 transition-transform min-h-[76px]`}
+              className={`${action.accent ?? "bg-slate-700"} rounded-2xl p-4 flex flex-col items-center justify-center gap-2 text-white active:scale-95 transition-all min-h-[76px] shadow-action`}
             >
               {Icon && <Icon size={20} className="opacity-90" />}
               <span className="text-[11px] font-semibold text-center leading-tight opacity-95">{action.label}</span>
@@ -236,7 +236,9 @@ function HouseInfoSection() {
 // ─── Sticky bottom nav ────────────────────────────────────────────────────────
 
 function BottomNav() {
+  const [active, setActive] = React.useState("restaurants");
   const scrollTo = (id: string) => {
+    setActive(id);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -248,7 +250,7 @@ function BottomNav() {
             <button
               key={id}
               onClick={() => scrollTo(id)}
-              className="flex-1 flex flex-col items-center justify-center py-2 gap-0.5 text-slate-500 active:text-ocean-600 transition-colors"
+              className={`flex-1 flex flex-col items-center justify-center py-2 gap-0.5 transition-colors ${active === id ? "text-ocean-500" : "text-slate-400"}`}
             >
               <Icon size={18} />
               <span className="text-[10px] font-semibold">{label}</span>
@@ -299,7 +301,7 @@ export default function Page() {
     <>
       <main className="min-h-screen bg-sand-50 max-w-lg mx-auto pb-20">
         {/* HERO */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-ocean-600 via-ocean-500 to-ocean-400 px-6 pt-14 pb-16 text-white">
+        <section className="relative overflow-hidden px-6 pt-14 pb-16 text-white" style={{ background: "linear-gradient(160deg, #155e6a 0%, #1f7d8e 40%, #3d9aaa 80%, #6cb8c2 100%)" }}>
           <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/5" />
           <div className="absolute -bottom-10 -left-16 w-48 h-48 rounded-full bg-white/5" />
           <div className="relative z-10">
@@ -322,7 +324,7 @@ export default function Page() {
           </div>
           <div className="absolute bottom-0 left-0 right-0">
             <svg viewBox="0 0 375 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-              <path d="M0 40V20C60 10 120 40 187.5 20C255 0 315 30 375 20V40H0Z" fill="#fdfaf5" />
+              <path d="M0 40V20C60 10 120 40 187.5 20C255 0 315 30 375 20V40H0Z" fill="#faf7f2" />
             </svg>
           </div>
         </section>
