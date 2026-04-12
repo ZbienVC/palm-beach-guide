@@ -224,7 +224,6 @@ export const guide: GuideData = {
       description: "Lively American chophouse with an energetic atmosphere",
       why: "Great for a group dinner when you want quality food without the full fine-dining commitment.",
       area: "Palm Beach",
-      priceRange: "$$",
       mapsUrl: "https://maps.google.com/?q=Meat+Market+Palm+Beach",
     },
     {
