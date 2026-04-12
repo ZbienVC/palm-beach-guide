@@ -25,6 +25,7 @@ export interface Restaurant {
   reservationTip?: string;
   priceRange?: string;    // e.g. '$' | '' | '$' | ''
   walkMins?: number;      // minutes walk from property
+  driveMins?: number;     // minutes drive from property
 }
 
 export interface Activity {
