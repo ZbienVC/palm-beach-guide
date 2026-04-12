@@ -90,7 +90,7 @@ export interface GuideData {
   property: {
     name: string;
     address: string;
-    unit: string;
+    unit?: string;
     city: string;
     mapsUrl: string;
   };
