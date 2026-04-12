@@ -4,12 +4,12 @@ import { MapPin, Clock } from "lucide-react";
 import type { Restaurant } from "@/data/guide";
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "Best Overall":           "bg-amber-100 text-amber-700 border-amber-200",
-  "Date Night": "bg-rose-100 text-rose-700 border-rose-200",
-  "Casual / Easy":          "bg-emerald-100 text-emerald-700 border-emerald-200",
+  "Best Overall":  "bg-amber-100 text-amber-700 border-amber-200",
+  "Date Night":    "bg-rose-100 text-rose-700 border-rose-200",
+  "Casual / Easy": "bg-emerald-100 text-emerald-700 border-emerald-200",
   "Breakfast":     "bg-orange-100 text-orange-700 border-orange-200",
-  "Drinks":     "bg-violet-100 text-violet-700 border-violet-200",
-  "Dessert": "bg-pink-100 text-pink-700 border-pink-200",
+  "Drinks":        "bg-violet-100 text-violet-700 border-violet-200",
+  "Dessert":       "bg-pink-100 text-pink-700 border-pink-200",
 };
 
 const PRICE_COLORS: Record<string, string> = {
@@ -40,20 +40,23 @@ export function RestaurantCard({ r }: { r: Restaurant }) {
             </div>
             <h3 className="font-display text-lg text-slate-800 leading-snug">{r.name}</h3>
           </div>
-          <a
-          <a
-            href={r.mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-shrink-0 flex items-center gap-1 text-xs font-semibold text-ocean-500 active:text-ocean-700 transition-colors"
-            aria-label={`Open ${r.name} in Maps`}
-          >
-            <MapPin size={13} />
-            <span>Map</span>
+          {r.mapsUrl && (
+            <a
+              href={r.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 flex items-center gap-1 text-xs font-semibold text-ocean-500 active:text-ocean-700 transition-colors mt-1"
+              aria-label={`Open ${r.name} in Maps`}
+            >
+              <MapPin size={13} />
+              <span>Map</span>
+            </a>
+          )}
+        </div>
         <p className="text-sm text-slate-500 leading-relaxed mt-1.5">{r.description}</p>
       </div>
 
-      {/* Why go — accent block */}
+      {/* Why go - accent block */}
       <div className="mx-5 mb-4 bg-sand-50 rounded-xl px-3.5 py-3 border border-sand-200/60">
         <p className="text-2xs font-black text-sand-500 mb-1 uppercase tracking-widest">Why go</p>
         <p className="text-sm text-slate-700 leading-relaxed">{r.why}</p>
@@ -74,13 +77,13 @@ export function RestaurantCard({ r }: { r: Restaurant }) {
           </span>
         )}
         {r.reservationTip && (
-        {r.reservationTip && (
           <span className="text-xs text-amber-600 font-semibold">
             Reserve: {r.reservationTip}
           </span>
+        )}
       </div>
 
-      {/* Host tip — bottom stripe */}
+      {/* Host tip - bottom stripe */}
       {r.hostNote && (
         <div className="px-5 py-3 border-t border-sand-100 bg-sand-50/60">
           <p className="text-xs text-slate-500 leading-relaxed">
