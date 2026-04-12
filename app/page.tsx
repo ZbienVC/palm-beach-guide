@@ -4,7 +4,8 @@ import React, { useState, useCallback } from "react";
 import {
   MapPin, Car, Waves, Home, CalendarCheck, MessageCircle,
   Wifi, Clock, Copy, Check, Share2, UtensilsCrossed,
-  Sunset, Sparkles, Heart, Info, Camera
+  Sunset, Sparkles, Heart, Info, Camera,
+  Menu, X, ChevronRight, PartyPopper
 } from "lucide-react";
 import { guide } from "@/data/guide";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -32,11 +33,24 @@ const CATEGORY_ORDER = [
 
 // ─── Section nav config ───────────────────────────────────────────────────────
 
-const NAV_SECTIONS = [
-  { id: "restaurants", label: "Food", icon: UtensilsCrossed },
-  { id: "things-to-do", label: "Explore", icon: Waves },
-  { id: "hidden-gems", label: "Gems", icon: Sparkles },
-  { id: "house-info", label: "House", icon: Home },
+// ─── Bottom nav — 4 clear tabs ────────────────────────────────────────────────
+
+const BOTTOM_NAV = [
+  { id: "top",           label: "Home",          icon: Home },
+  { id: "restaurants",  label: "Food",           icon: UtensilsCrossed },
+  { id: "entertainment",label: "Entertainment",  icon: PartyPopper },
+  { id: "house-info",   label: "Your Stay",      icon: Wifi },
+];
+
+// ─── Side drawer links ────────────────────────────────────────────────────────
+
+const DRAWER_LINKS = [
+  { id: "photos",        label: "Photos",         icon: Camera },
+  { id: "things-to-do", label: "Things To Do",   icon: Waves },
+  { id: "attractions",  label: "Attractions",    icon: MapPin },
+  { id: "nightlife",    label: "Nightlife",      icon: Sunset },
+  { id: "hidden-gems",  label: "Hidden Gems",    icon: Sparkles },
+  { id: "thoughts",     label: "Host Notes",     icon: Heart },
 ];
 
 
@@ -235,32 +249,118 @@ function HouseInfoSection() {
   );
 }
 
-// ─── Sticky bottom nav ────────────────────────────────────────────────────────
+// ─── Side Drawer ──────────────────────────────────────────────────────────────
 
-function BottomNav() {
-  const [active, setActive] = React.useState("restaurants");
-  const scrollTo = (id: string) => {
-    setActive(id);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+function SideDrawer({ open, onClose, onNav }: { open: boolean; onClose: () => void; onNav: (id: string) => void }) {
+  React.useEffect(() => {
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  if (!open) return null;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 max-w-lg mx-auto">
-      <div className="bg-white/95 backdrop-blur-md border-t border-slate-100 px-2 pb-safe-bottom">
-        <div className="flex">
-          {NAV_SECTIONS.map(({ id, label, icon: Icon }) => (
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm"
+        onClick={onClose}
+      />
+      {/* Drawer panel */}
+      <div className="fixed top-0 right-0 bottom-0 z-[70] w-72 bg-white shadow-2xl flex flex-col max-w-[85vw]">
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-sand-100">
+          <div>
+            <p className="font-display text-lg text-slate-800">More</p>
+            <p className="text-xs text-slate-400">All sections</p>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 active:bg-slate-200 transition-colors"
+          >
+            <X size={18} />
+          </button>
+        </div>
+        {/* Links */}
+        <div className="flex-1 overflow-y-auto py-3">
+          {DRAWER_LINKS.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
-              onClick={() => scrollTo(id)}
-              className={`flex-1 flex flex-col items-center justify-center py-2 gap-0.5 transition-colors ${active === id ? "text-ocean-500" : "text-slate-400"}`}
+              onClick={() => { onNav(id); onClose(); }}
+              className="w-full flex items-center gap-4 px-5 py-3.5 text-left active:bg-sand-50 transition-colors"
             >
-              <Icon size={18} />
-              <span className="text-[10px] font-semibold">{label}</span>
+              <div className="w-9 h-9 rounded-xl bg-ocean-50 flex items-center justify-center flex-shrink-0">
+                <Icon size={17} className="text-ocean-500" />
+              </div>
+              <span className="text-sm font-semibold text-slate-700 flex-1">{label}</span>
+              <ChevronRight size={15} className="text-slate-300" />
             </button>
           ))}
         </div>
+        {/* Footer */}
+        <div className="px-5 py-4 border-t border-sand-100">
+          <p className="text-xs text-slate-400 text-center">651 Okeechobee Blvd, Unit 210</p>
+          <p className="text-xs text-slate-400 text-center">West Palm Beach, FL 33401</p>
+        </div>
       </div>
-    </nav>
+    </>
+  );
+}
+
+// ─── Bottom nav ───────────────────────────────────────────────────────────────
+
+function BottomNav() {
+  const [active, setActive] = React.useState("top");
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+  const scrollTo = (id: string) => {
+    if (id === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (id === "entertainment") {
+      document.getElementById("things-to-do")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setActive(id);
+  };
+
+  return (
+    <>
+      <SideDrawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        onNav={(id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
+      />
+      <nav className="fixed bottom-0 left-0 right-0 z-50 max-w-lg mx-auto">
+        <div className="bg-white/97 backdrop-blur-md border-t border-slate-100 pb-safe-bottom">
+          <div className="flex">
+            {BOTTOM_NAV.map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className={`flex-1 flex flex-col items-center justify-center py-2.5 gap-1 transition-all ${
+                  active === id ? "text-ocean-600" : "text-slate-400"
+                }`}
+              >
+                <Icon size={active === id ? 20 : 18} strokeWidth={active === id ? 2.5 : 2} />
+                <span className={`text-[10px] font-bold leading-none ${active === id ? "text-ocean-600" : "text-slate-400"}`}>
+                  {label}
+                </span>
+              </button>
+            ))}
+            {/* Menu button */}
+            <button
+              onClick={() => setDrawerOpen(true)}
+              className="flex-none w-14 flex flex-col items-center justify-center py-2.5 gap-1 text-slate-400 active:text-ocean-500 transition-colors"
+            >
+              <Menu size={18} strokeWidth={2} />
+              <span className="text-[10px] font-bold leading-none">More</span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 }
 
@@ -302,6 +402,7 @@ export default function Page() {
   return (
     <>
       <main className="min-h-screen bg-sand-50 max-w-lg mx-auto pb-20">
+        <div id="top" />
         {/* HERO */}
         <section className="relative overflow-hidden px-6 pt-14 pb-16 text-white" style={{ background: "linear-gradient(160deg, #155e6a 0%, #1f7d8e 40%, #3d9aaa 80%, #6cb8c2 100%)" }}>
           <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/5" />
@@ -349,6 +450,7 @@ export default function Page() {
 
           <RestaurantsSection />
 
+          <div id="entertainment" />
           <section id="things-to-do" className="px-4 mb-12">
             <SectionHeader label="Get out" title="Best Things To Do" subtitle="From morning walks to afternoon adventures." />
             <div className="space-y-4">
