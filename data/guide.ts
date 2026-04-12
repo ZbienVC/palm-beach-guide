@@ -190,7 +190,7 @@ export const guide: GuideData = {
     },
     {
       name: "Imoto",
-      category: "Nice Dinner / Date Night",
+      category: "Date Night",
       priceRange: "$$$",
       walkMins: 18,
       description: "Upscale Japanese with expertly crafted sushi and small plates",
@@ -201,7 +201,7 @@ export const guide: GuideData = {
     },
     {
       name: "Buccan",
-      category: "Nice Dinner / Date Night",
+      category: "Date Night",
       priceRange: "$$",
       walkMins: 20,
       description: "New American small plates — creative, local, and always vibrant",
@@ -240,7 +240,7 @@ export const guide: GuideData = {
     },
     {
       name: "Bricktop's",
-      category: "Breakfast / Coffee",
+      category: "Breakfast",
       description: "Reliable American fare for breakfast and brunch",
       walkMins: 15,
       why: "Eggs Benedict and avocado toast that actually deliver. Great for a slow start.",
@@ -271,7 +271,7 @@ export const guide: GuideData = {
     },
     {
       name: "Sprinkles",
-      category: "Dessert / Sweet Treats",
+      category: "Dessert",
       description: "The original cupcake bakery — iconic and always satisfying",
       walkMins: 12,
       why: "If you've never had a Sprinkles cupcake, this is the original. 24-hour vending machine outside.",
@@ -280,7 +280,7 @@ export const guide: GuideData = {
     },
     {
       name: "Cucina dell'Arte",
-      category: "Drinks / Cocktails",
+      category: "Drinks",
       description: "Italian restaurant that transitions into a bar scene late night",
       walkMins: 14,
       why: "One of the few spots on the island that gets lively after 10pm. Good cocktails, great energy.",
@@ -300,7 +300,7 @@ export const guide: GuideData = {
     },
     {
       name: "Sloan\u2019s",
-      category: "Dessert / Sweet Treats",
+      category: "Dessert",
       walkMins: 5,
       description: "Over-the-top ice cream wonderland with homemade flavors, a candy wall, and pink-everything decor",
       why: "A Palm Beach icon. The sundaes are ridiculous in the best way. Bring kids or just embrace your inner child.",
@@ -311,7 +311,7 @@ export const guide: GuideData = {
     },
     {
       name: "Shanghai",
-      category: "Nice Dinner / Date Night",
+      category: "Date Night",
       description: "Upscale Asian fusion with a sleek atmosphere and creative small plates",
       walkMins: 6,
       why: "One of the better date-night options in WPB. Inventive cocktails and a menu that rewards adventurous ordering.",
@@ -322,7 +322,7 @@ export const guide: GuideData = {
     },
     {
       name: "Sour Seed Bagels",
-      category: "Breakfast / Coffee",
+      category: "Breakfast",
       walkMins: 10,
       description: "Artisan bagel shop with house-fermented sourdough bagels and creative spreads",
       why: "Proper bagels in South Florida \u2014 rare and worth it. The sourdough process gives them a depth most bagel shops miss.",
@@ -333,7 +333,7 @@ export const guide: GuideData = {
     },
     {
       name: "The Salty Donut",
-      category: "Breakfast / Coffee",
+      category: "Breakfast",
       walkMins: 8,
       description: "Artisan donut shop with rotating craft flavors and excellent coffee",
       why: "These are not Dunkin. Seasonal, thoughtful, and genuinely delicious. A great stop before or after the beach.",
@@ -344,7 +344,7 @@ export const guide: GuideData = {
     },
     {
       name: "Harry\u2019s",
-      category: "Nice Dinner / Date Night",
+      category: "Date Night",
       description: "Upscale coastal restaurant with an impressive wine list and refined American menu",
       walkMins: 28,
       why: "One of the finest dining experiences in the area. Polished service, beautiful room, exceptional food.",
@@ -356,7 +356,7 @@ export const guide: GuideData = {
     },
     {
       name: "Peachwave",
-      category: "Dessert / Sweet Treats",
+      category: "Dessert",
       walkMins: 6,
       description: "Self-serve frozen yogurt with a huge topping bar \u2014 pay by weight",
       why: "Light, refreshing, and completely guilt-free (or not, depending on your topping choices). Perfect after a beach day.",
@@ -377,7 +377,7 @@ export const guide: GuideData = {
     },
     {
       name: "Pistache French Bistro",
-      category: "Nice Dinner / Date Night",
+      category: "Date Night",
       description: "Classic French bistro on the waterfront with a beautiful terrace and excellent wine list",
       why: "Romantic, walkable, and genuinely excellent French cooking. The waterfront terrace at sunset is one of the best dining experiences in WPB.",
       area: "Clematis Waterfront, West Palm Beach",
@@ -388,7 +388,7 @@ export const guide: GuideData = {
     },
     {
       name: "City Cellar Wine Bar",
-      category: "Drinks / Cocktails",
+      category: "Drinks",
       description: "Award-winning wine bar and American grill in the heart of Rosemary Square",
       why: "Exceptional wine list, great happy hour, and a solid menu to go with it. Literally walking distance from your door.",
       area: "Rosemary Square — 5 min walk",
