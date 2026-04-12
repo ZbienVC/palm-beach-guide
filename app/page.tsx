@@ -17,8 +17,9 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 // Icon map — type inferred to avoid Lucide propTypes conflict
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ICON_MAP: Record<string, any> = {
+const ICON_MAP: Record<string, any> = {
+  MapPin, Car, Waves, Home, CalendarCheck, MessageCircle, Camera,
 };
-
 // ─── Category filter order ────────────────────────────────────────────────────
 
 const CATEGORY_ORDER = [
