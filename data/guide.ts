@@ -202,16 +202,6 @@ export const guide: GuideData = {
       walkMins: 25,
       driveMins: 7,
     },
-    {
-      name: "Sprinkles",
-      category: "Dessert",
-      description: "The original cupcake bakery — iconic and always satisfying",
-      why: "If you've never had a Sprinkles cupcake, this is the original. 24-hour vending machine outside.",
-      area: "Royal Poinciana Way, Palm Beach",
-      mapsUrl: "https://maps.google.com/?q=Sprinkles+Palm+Beach",
-      walkMins: 22,
-      driveMins: 7,
-    },
     // ── West Palm Beach (no bridge — short walks) ──────────────────────────
     {
       name: "El Camino",
