@@ -281,6 +281,7 @@ export const guide: GuideData = {
       mapsUrl: "https://maps.app.goo.gl/RfCn3kGNW1zNFt286",
       priceRange: "$$$",
       reservationTip: "Reserve ahead on weekends",
+      hostNote: "One of my favorite spots in WPB. Great for a special dinner without leaving the neighborhood.",
       walkMins: 8,
       driveMins: 3,
     },
