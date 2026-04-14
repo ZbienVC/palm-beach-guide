@@ -148,7 +148,7 @@ export const guide: GuideData = {
     {
       label: "Beach",
       icon: "Waves",
-      emoji: "🏖️",
+      emoji: "🏖",
       href: "#things-to-do",
       accent: "bg-ocean-400",
     },
@@ -162,7 +162,7 @@ export const guide: GuideData = {
     {
       label: "Reservations",
       icon: "CalendarCheck",
-      emoji: "📅",
+      emoji: "🍴",
       href: "https://resy.com",
       accent: "bg-sand-400",
     },
