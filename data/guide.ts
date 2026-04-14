@@ -179,7 +179,7 @@ export const guide: GuideData = {
     // ── Palm Beach island (walk across Okeechobee Bridge ~10 min to reach island) ──
     {
       name: "PB Catch",
-      category: "Best Overall",
+      category: "Upscale",
       priceRange: "$$$",
       description: "Fresh seafood with a coastal-chic vibe right on the water",
       why: "The raw bar alone is worth the visit. Best seafood on the island.",
