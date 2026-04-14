@@ -222,18 +222,6 @@ export const guide: GuideData = {
       walkMins: 22,
       driveMins: 7,
     },
-    {
-      name: "Imoto",
-      category: "Upscale",
-      priceRange: "$$$",
-      description: "Upscale Japanese with expertly crafted sushi and small plates",
-      why: "The best date night spot on the island. Intimate, stylish, and the omakase bar is a special experience.",
-      area: "Palm Beach – central island",
-      mapsUrl: "https://maps.google.com/?q=Imoto+Palm+Beach",
-      reservationTip: "Reservations strongly recommended",
-      walkMins: 30,
-      driveMins: 8,
-    },
     // ── West Palm Beach (no bridge — short walks) ──────────────────────────
     {
       name: "El Camino",
