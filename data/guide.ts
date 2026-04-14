@@ -626,8 +626,8 @@ export const guide: GuideData = {
       "Beach towels and chairs are in the closet by the front door",
       "Parking garage closes at midnight — plan accordingly",
     ],
-    contactHost: "Text or call: (561) 555-0100 — I usually respond within the hour",
-    emergency: "For emergencies, call 911. Building security: (561) 555-0199",
+    contactHost: "Text or call Leah: (973) 865-6437 — I usually respond within the hour",
+    emergency: "For emergencies, call 911. Building front desk: (561) 671-9962",
   },
 };
 
