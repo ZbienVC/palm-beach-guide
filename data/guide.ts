@@ -581,13 +581,13 @@ export const guide: GuideData = {
         caption: "Second Bedroom",
       },
       {
-        src: "/images/bathroom-2.jpg",
-        alt: "Stunning bathroom with floral wallpaper and marble countertop",
+        src: "/images/bathroom-1.jpg",
+        alt: "Clean modern bathroom with hexagon tile floor",
         caption: "Primary Bathroom",
       },
       {
-        src: "/images/bathroom-1.jpg",
-        alt: "Clean modern bathroom with hexagon tile floor",
+        src: "/images/bathroom-2.jpg",
+        alt: "Stunning bathroom with floral wallpaper and marble countertop",
         caption: "Second Bathroom",
       },
       {
