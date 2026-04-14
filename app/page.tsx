@@ -404,14 +404,15 @@ export default function Page() {
             <p className="text-white/75 text-base leading-relaxed mb-6">{guide.hero.tagline}</p>
 
             {/* Content-type tag row */}
-            <div className="flex gap-2 flex-wrap">
+            {/* Content-type tag row */}
+            <div className="flex gap-1.5 flex-nowrap overflow-x-auto no-scrollbar">
               {[
                 { emoji: "🍽️", label: "Food" },
                 { emoji: "🏄", label: "Activities" },
                 { emoji: "🌙", label: "Nightlife" },
                 { emoji: "🏠", label: "House Info" },
               ].map(({ emoji, label }) => (
-                <span key={label} className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-white/80 text-xs font-medium">
+                <span key={label} className="flex-shrink-0 flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/10 border border-white/15 text-white/75 text-[11px] font-medium whitespace-nowrap">
                   {emoji} {label}
                 </span>
               ))}
