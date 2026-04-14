@@ -149,7 +149,7 @@ export const guide: GuideData = {
       label: "Beach",
       icon: "Waves",
       emoji: "🏖",
-      href: "#things-to-do",
+      href: "https://maps.app.goo.gl/AYHfozC9qYjX4huc9",
       accent: "bg-ocean-400",
     },
     {
