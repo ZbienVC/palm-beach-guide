@@ -7,3 +7,4 @@ Premium mobile-first local guide for guests at 651 Okeechobee Blvd, Unit 210, We
 
 ## Editing content
 All recommendations, photos, and house info live in one file: `data/guide.ts`
+<!-- bust: 2026-04-14 16:14 -->
