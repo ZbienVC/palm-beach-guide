@@ -1,5 +1,9 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  generateBuildId: async () => {
+    // Force unique build ID every time - prevents Vercel from serving cached pages
+    return `build-${Date.now()}`;
+  },
   images: {
     remotePatterns: [
       {
@@ -8,7 +12,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "**",  // Allow any https image URL for flexibility
+        hostname: "**",
       },
     ],
   },
