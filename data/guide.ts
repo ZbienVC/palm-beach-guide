@@ -617,8 +617,8 @@ export const guide: GuideData = {
   },
   houseInfo: {
     wifi: {
-      name: "PalmBeachHome_5G",
-      password: "WelcomeToPB2024",
+      name: "Tower210",
+      password: "Enjoyyourstay",
     },
     parking: "One assigned spot in the garage — Level 2, Space 14. Guest parking available on the street after 6pm.",
     checkoutTime: "11:00 AM",
