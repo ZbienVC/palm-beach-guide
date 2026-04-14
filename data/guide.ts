@@ -620,7 +620,7 @@ export const guide: GuideData = {
       name: "Tower210",
       password: "Enjoyyourstay",
     },
-    parking: "One assigned spot in the garage — Level 2, Space 14. Guest parking available on the street after 6pm.",
+    parking: "Spot #30 in the garage — pull in and immediately take a left, drive to the end, last spot on the left. For guest parking: go to the front desk and give your first and last name plus license plate number to get a guest pass.",
     checkoutTime: "11:00 AM",
     checkoutReminders: [
       "Strip and leave used towels in the bathroom",
