@@ -125,7 +125,7 @@ export const guide: GuideData = {
   },
   hero: {
     greeting: "Welcome to West Palm Beach",
-    tagline: "Your curated local guide for Palm Beach and West Palm Beach",
+    tagline: "Your curated local guide — staywestpalm.now",
     hostIntro:
       "I've spent years exploring this beautiful stretch of Florida and handpicked every spot in this guide. Whether you want a slow beach morning, a perfect dinner reservation, or a hidden gem most visitors miss — it's all here. Enjoy every moment.",
   },
