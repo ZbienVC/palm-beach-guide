@@ -288,7 +288,7 @@ function HouseInfoSection() {
 
         {/* Contact host */}
         <a
-          href={`sms:${h.contactHost.match(/\(?\d[\d\s\-().+]{7,}/)?.[0] ?? ""}`}
+          href="sms:+19738656437"
           className="block rounded-2xl p-4 text-white active:opacity-90 transition-opacity"
           style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)" }}
         >
