@@ -617,6 +617,7 @@ export const guide: GuideData = {
       "Strip used towels and leave in the laundry basket near the machines",
       "Close and lock all windows and doors",
       "Dispose of any trash in the trash chute",
+    ],
     importantNotes: [
       "No smoking anywhere on the property",
       "Quiet hours 10pm – 8am",
