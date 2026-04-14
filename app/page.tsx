@@ -14,7 +14,7 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 
 // ─── Category filter order ────────────────────────────────────────────────────
 
-const CATEGORY_ORDER = ["Best Overall", "Date Night", "Casual", "Breakfast", "Drinks", "Dessert"];
+const CATEGORY_ORDER = ["Best Overall", "Upscale", "Casual", "Breakfast", "Drinks", "Dessert"];
 
 // ─── Bottom nav ───────────────────────────────────────────────────────────────
 
