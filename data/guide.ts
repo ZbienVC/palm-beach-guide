@@ -192,7 +192,7 @@ export const guide: GuideData = {
     },
     {
       name: "Harry\u2019s",
-      category: "Date Night",
+      category: "Upscale",
       description: "Upscale coastal restaurant with an impressive wine list and refined American menu",
       why: "One of the finest dining experiences in the area. Polished service, beautiful room, exceptional food.",
       area: "Palm Beach – north island",
@@ -225,7 +225,7 @@ export const guide: GuideData = {
     },
     {
       name: "Imoto",
-      category: "Date Night",
+      category: "Upscale",
       priceRange: "$$$",
       description: "Upscale Japanese with expertly crafted sushi and small plates",
       why: "The best date night spot on the island. Intimate, stylish, and the omakase bar is a special experience.",
@@ -237,7 +237,7 @@ export const guide: GuideData = {
     },
     {
       name: "Buccan",
-      category: "Date Night",
+      category: "Upscale",
       priceRange: "$$",
       description: "New American small plates — creative, local, and always vibrant",
       why: "The vibe is upbeat without being loud. Perfect for a relaxed special dinner.",
@@ -245,18 +245,6 @@ export const guide: GuideData = {
       mapsUrl: "https://maps.google.com/?q=Buccan+Palm+Beach",
       hostNote: "The charcuterie and the wagyu burger are both exceptional.",
       walkMins: 30,
-      driveMins: 8,
-    },
-    {
-      name: "Hamburger Heaven",
-      category: "Casual",
-      priceRange: "$",
-      description: "A beloved Palm Beach institution since 1945",
-      why: "Unpretentious, fast, and genuinely delicious. A local staple everyone should try once.",
-      area: "Palm Beach – central island",
-      mapsUrl: "https://maps.google.com/?q=Hamburger+Heaven+Palm+Beach",
-      hostNote: "Cash preferred. Get the milkshake.",
-      walkMins: 29,
       driveMins: 8,
     },
     // ── West Palm Beach (no bridge — short walks) ──────────────────────────
@@ -298,7 +286,7 @@ export const guide: GuideData = {
     },
     {
       name: "Shanghai",
-      category: "Date Night",
+      category: "Upscale",
       description: "Upscale Asian fusion with a sleek atmosphere and creative small plates",
       why: "One of the better date-night options in WPB. Inventive cocktails and a menu that rewards adventurous ordering.",
       area: "West Palm Beach",
@@ -310,7 +298,7 @@ export const guide: GuideData = {
     },
     {
       name: "Pistache French Bistro",
-      category: "Date Night",
+      category: "Upscale",
       description: "Classic French bistro on the waterfront with a beautiful terrace and excellent wine list",
       why: "Romantic, walkable, and genuinely excellent French cooking. The waterfront terrace at sunset is one of the best dining experiences in WPB.",
       area: "Clematis Waterfront, West Palm Beach",
@@ -367,7 +355,36 @@ export const guide: GuideData = {
       walkMins: 10,
       driveMins: 3,
     },
-  ],
+
+    {
+      name: "Pop Bagels",
+      category: "Breakfast",
+      priceRange: "$",
+      description: "Classic NY-style bagels done right — fresh-baked, hand-rolled, and stacked with creative spreads",
+      why: "The go-to breakfast spot. Great bagels, great coffee, great vibe. Get there early — they sell out.",
+      area: "West Palm Beach",
+      mapsUrl: "https://maps.app.goo.gl/zNT2YsGhnprDbZtr7",
+      hostNote: "Order the everything bagel with scallion cream cheese. Thank me later.",
+    },
+    {
+      name: "Skinny Louie",
+      category: "Casual",
+      priceRange: "$$",
+      description: "Neighborhood bar and kitchen with a laid-back vibe, great cocktails, and solid comfort food",
+      why: "Local favorite for a relaxed night out. Unpretentious, fun, and the food is way better than you expect.",
+      area: "West Palm Beach",
+      mapsUrl: "https://maps.app.goo.gl/GfDv3zSJFQUViLJw7",
+    },
+    {
+      name: "Ruth's Chris Steak House",
+      category: "Upscale",
+      priceRange: "$$$$",
+      description: "The classic American steakhouse — sizzling USDA prime cuts served on 500-degree plates",
+      why: "If you want a serious steak dinner, this is it. Consistent, impressive, and worth every penny for a special occasion.",
+      area: "West Palm Beach",
+      mapsUrl: "https://maps.app.goo.gl/FM4vCjFPcGq2ZhKi9",
+      reservationTip: "Book ahead, especially on weekends",
+    },  ],
 
   thingsToDo: [
     {
