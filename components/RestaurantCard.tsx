@@ -70,7 +70,7 @@ export function RestaurantCard({ r }: { r: Restaurant }) {
         <div className="px-5 pb-4 space-y-2">
           {r.reservationTip && (
             <div className="flex items-start gap-2">
-              <span className="text-amber-500 text-sm mt-0.5 flex-shrink-0">📅</span>
+              <span className="text-[10px] font-black uppercase tracking-wider text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded flex-shrink-0">Reserve</span>
               <span className="text-xs text-amber-700 font-semibold leading-snug">{r.reservationTip}</span>
             </div>
           )}
