@@ -186,7 +186,6 @@ export const guide: GuideData = {
       area: "Palm Beach – north island",
       mapsUrl: "https://maps.google.com/?q=PB+Catch+Palm+Beach",
       reservationTip: "Book ahead for dinner",
-      hostNote: "Get here for happy hour if you can — best value on the island.",
       walkMins: 23,
       driveMins: 7,
     },
