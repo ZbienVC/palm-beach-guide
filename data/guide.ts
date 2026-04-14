@@ -170,7 +170,7 @@ export const guide: GuideData = {
       label: "Contact Host",
       icon: "MessageCircle",
       emoji: "💬",
-      href: "sms:+15615550100",
+      href: "sms:+19738656437",
       accent: "bg-rose-400",
     },
   ],
