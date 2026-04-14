@@ -378,7 +378,7 @@ function ShareButton() {
 export default function Page() {
   return (
     <>
-      <main className="min-h-screen bg-sand-50 max-w-lg mx-auto pb-24">
+      <main className="min-h-screen bg-sand-50 max-w-lg mx-auto" style={{ paddingBottom: "calc(4rem + env(safe-area-inset-bottom, 0px))" }}>
         <div id="top" />
 
         {/* ── Hero ── */}
@@ -454,7 +454,7 @@ export default function Page() {
             <HouseInfoSection />
           </div>
 
-          <footer className="bg-sand-50 px-4 py-8 text-center">
+          <footer className="bg-sand-50 px-4 py-6 text-center">
             <div className="w-8 h-px bg-sand-300 mx-auto mb-3" />
             <p className="text-xs text-slate-400">Enjoy your stay &middot; Palm Beach, Florida</p>
           </footer>
