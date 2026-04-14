@@ -611,14 +611,12 @@ export const guide: GuideData = {
       password: "Enjoyyourstay",
     },
     parking: "Spot #30 in the garage — pull in and immediately take a left, drive to the end, last spot on the left. For guest parking: go to the front desk and give your first and last name plus license plate number to get a guest pass.",
-    checkoutTime: "11:00 AM",
+    checkoutTime: "4:00 PM",
     checkoutReminders: [
-      "Strip and leave used towels in the bathroom",
-      "Leave keys on the kitchen counter",
+      "Return key fobs — leave on the butterfly hook near the front door",
+      "Strip used towels and leave in the laundry basket near the machines",
       "Close and lock all windows and doors",
-      "Set thermostat to 76°F before leaving",
-      "No need to strip bed linens",
-    ],
+      "Dispose of any trash in the trash chute",
     importantNotes: [
       "No smoking anywhere on the property",
       "Quiet hours 10pm – 8am",
