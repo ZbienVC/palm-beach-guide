@@ -619,12 +619,13 @@ export const guide: GuideData = {
       "Dispose of any trash in the trash chute",
     ],
     importantNotes: [
-      "✈️  PBI Airport is ~10 minutes away — easy arrivals and departures",
-      "🎭  Immediately next to the Kravis Center for the Performing Arts",
-      "🏊  Community amenities: gym, heated pool & hot tub, library, business center, and clubhouse",
-      "🛍️  Steps from Rosemary Square — dining, shopping, and events right outside your door",
-      "📅  The area hosts live music, outdoor markets, and cultural events year-round — check the lobby board",
-    contactHost: "Text or call Leah: (973) 865-6437 — I usually respond within the hour",
+    importantNotes: [
+      "Airport is ~10 minutes away (PBI) — easy arrivals and departures",
+      "Immediately next to the Kravis Center for the Performing Arts",
+      "Community amenities: gym, heated pool & hot tub, library, business center, and clubhouse",
+      "Steps from Rosemary Square — dining, shopping, and events right outside your door",
+      "Live music, outdoor markets, and cultural events in the area year-round",
+    ],
     emergency: "For emergencies, call 911. Building front desk: (561) 671-9962",
   },
 };
