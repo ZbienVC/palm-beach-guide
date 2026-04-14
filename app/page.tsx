@@ -55,6 +55,15 @@ function HostPicks() {
     .filter((r: any) => r.hostNote || r.category === "Best Overall")
     .slice(0, 4);
 
+  // Map restaurant names to their uploaded photos
+  const PICK_PHOTOS: Record<string, string> = {
+    "Harry\u2019s": "/images/pick-harrys.jpg",
+    "El Camino": "/images/pick-elcamino.jpg",
+    "Avocado Grill": "/images/pick-avocadogrill.jpg",
+    "City Cellar Wine Bar": "/images/pick-citycellar.jpg",
+    "Shanghai\u2019d": "/images/pick-harrys.jpg",
+  };
+
   return (
     <section className="mb-8">
       <div className="px-4 flex items-center gap-2 mb-3">
@@ -62,8 +71,8 @@ function HostPicks() {
         <span className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-600">Host&rsquo;s Picks</span>
       </div>
       <div className="flex gap-3 overflow-x-auto pl-4 pr-4 pb-1 no-scrollbar">
-        {picks.map((r: any, i: number) => {
-          const colors = ["from-ocean-500 to-ocean-700", "from-rose-400 to-rose-600", "from-violet-500 to-violet-700", "from-amber-400 to-amber-600"];
+        {picks.map((r: any) => {
+          const photo = PICK_PHOTOS[r.name];
           return (
             <a
               key={r.name}
@@ -72,9 +81,16 @@ function HostPicks() {
               rel="noopener noreferrer"
               className="flex-shrink-0 w-44 rounded-2xl overflow-hidden shadow-card border border-sand-100 active:scale-[0.97] transition-transform bg-white"
             >
-              <div className={`h-24 bg-gradient-to-br ${colors[i % colors.length]} flex flex-col justify-end p-3`}>
-                <p className="text-white font-display text-base leading-tight">{r.name}</p>
-                {r.area && <p className="text-white/60 text-[10px] font-medium mt-0.5">{r.area.split(",")[0]}</p>}
+              <div className="h-28 relative overflow-hidden">
+                {photo ? (
+                  <img src={photo} alt={r.name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-ocean-500 to-ocean-700" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-3">
+                  <p className="text-white font-semibold text-sm leading-tight">{r.name}</p>
+                  {r.area && <p className="text-white/60 text-[10px] mt-0.5">{r.area.split(",")[0]}</p>}
+                </div>
               </div>
               <div className="p-3 flex items-center justify-between">
                 {r.priceRange
