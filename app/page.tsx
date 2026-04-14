@@ -286,16 +286,15 @@ function HouseInfoSection() {
           </ul>
         </div>
 
-        {/* Important notes */}
-        <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100">
-          <div className="flex items-center gap-2 mb-2.5">
-            <Info size={14} className="text-amber-600" />
-            <p className="text-[10px] font-black uppercase tracking-widest text-amber-600">Important</p>
+        {/* Perks */}
+        <div className="bg-emerald-50 rounded-2xl p-4 border border-emerald-100">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-base">⭐</span>
+            <p className="text-xs font-black uppercase tracking-widest text-emerald-700">Perks of This Location</p>
           </div>
-          <ul className="space-y-2">
+          <ul className="space-y-2.5">
             {h.importantNotes.map((note: string, i: number) => (
-              <li key={i} className="text-sm text-slate-700 flex items-start gap-2">
-                <span className="text-amber-400 flex-shrink-0 mt-0.5">•</span>
+              <li key={i} className="text-sm text-slate-700 leading-snug">
                 {note}
               </li>
             ))}
