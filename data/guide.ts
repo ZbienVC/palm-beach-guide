@@ -372,6 +372,15 @@ export const guide: GuideData = {
       area: "West Palm Beach",
       mapsUrl: "https://maps.app.goo.gl/FM4vCjFPcGq2ZhKi9",
       reservationTip: "Book ahead, especially on weekends",
+    },
+    {
+      name: "Pubbelly Sushi",
+      category: "Casual",
+      priceRange: "$$",
+      description: "Creative Asian-Latin sushi fusion with inventive rolls, small plates, and a lively atmosphere",
+      why: "Fun, social, and consistently delicious. Great for a group or a casual date night without the formality.",
+      area: "West Palm Beach",
+      mapsUrl: "https://maps.app.goo.gl/SRvr4PCT34ZBcMk48",
     },  ],
 
   thingsToDo: [
