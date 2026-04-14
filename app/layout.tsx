@@ -12,22 +12,24 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#0f5bba",
+  themeColor: "#155e6a",
 };
 
 export const metadata: Metadata = {
-  title: "West Palm Beach Local Guide",
-  description: "Your curated local guide for West Palm Beach and Palm Beach — restaurants, hidden gems, and local tips from your host at 651 Okeechobee Blvd.",
+  title: "Stay West Palm — Local Guide",
+  description: "Your curated local guide for West Palm Beach — restaurants, hidden gems, nightlife, and insider tips from your host.",
   openGraph: {
-    title: "West Palm Beach & Palm Beach Local Guide",
-    description: "Curated restaurants, hidden gems, and local tips from your host at 651 Okeechobee Blvd.",
+    title: "Stay West Palm — Local Guide",
+    description: "Curated restaurants, hidden gems, nightlife, and insider tips for your stay in West Palm Beach.",
     type: "website",
     locale: "en_US",
+    url: "https://www.staywestpalm.now",
+    siteName: "Stay West Palm",
   },
   twitter: {
     card: "summary_large_image",
-    title: "West Palm Beach & Palm Beach Local Guide",
-    description: "Curated restaurants, hidden gems, and local tips from your host at 651 Okeechobee Blvd.",
+    title: "Stay West Palm — Local Guide",
+    description: "Curated restaurants, hidden gems, nightlife, and insider tips for your stay in West Palm Beach.",
   },
 };
 
