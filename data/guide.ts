@@ -444,13 +444,6 @@ export const guide: GuideData = {
 
   nightlife: [
     {
-      name: "Cucina dell'Arte",
-      vibe: "Upscale Italian that turns lively late — dancing, cocktails, good energy",
-      bestFor: "Groups, late night, celebratory evenings",
-      reservationNote: "Walk-in friendly later in the evening",
-      mapsUrl: "https://maps.google.com/?q=Cucina+dell+Arte+Palm+Beach",
-    },
-    {
       name: "Bar Taco",
       vibe: "Relaxed coastal bar with excellent cocktails and tacos",
       bestFor: "Casual evening drinks, easy vibe",
