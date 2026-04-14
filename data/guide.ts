@@ -235,18 +235,6 @@ export const guide: GuideData = {
       walkMins: 30,
       driveMins: 8,
     },
-    {
-      name: "Buccan",
-      category: "Upscale",
-      priceRange: "$$",
-      description: "New American small plates — creative, local, and always vibrant",
-      why: "The vibe is upbeat without being loud. Perfect for a relaxed special dinner.",
-      area: "Palm Beach – central island",
-      mapsUrl: "https://maps.google.com/?q=Buccan+Palm+Beach",
-      hostNote: "The charcuterie and the wagyu burger are both exceptional.",
-      walkMins: 30,
-      driveMins: 8,
-    },
     // ── West Palm Beach (no bridge — short walks) ──────────────────────────
     {
       name: "El Camino",
