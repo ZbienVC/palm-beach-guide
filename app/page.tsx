@@ -400,8 +400,8 @@ export default function Page() {
               <ShareButton />
             </div>
 
-            <h1 className="font-display text-4xl text-white mb-2.5 leading-tight">{guide.hero.greeting}</h1>
-            <p className="text-white/75 text-base leading-relaxed mb-6">{guide.hero.tagline}</p>
+            <h1 className="font-display text-white mb-2.5 leading-tight" style={{ fontSize: "clamp(2rem, 9vw, 2.5rem)" }}>Welcome to<br />West Palm Beach</h1>
+            <p className="text-white/70 text-sm leading-relaxed mb-5">Your curated local guide to restaurants, hidden gems &amp; more</p>
 
             {/* Content-type tag row */}
             {/* Content-type tag row */}
