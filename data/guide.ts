@@ -556,29 +556,44 @@ export const guide: GuideData = {
     // The gallery handles both automatically.
     apartmentPhotos: [
       {
-        src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
-        alt: "Modern living room with city views",
-        caption: "Living room — floor to ceiling windows",
+        src: "/images/living-room.jpg",
+        alt: "Spacious living room with floor-to-ceiling shuttered windows and sectional sofa",
+        caption: "Living Room",
       },
       {
-        src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-        alt: "Bright modern kitchen",
-        caption: "Kitchen — fully equipped",
+        src: "/images/dining.jpg",
+        alt: "Dining area with glass table and open kitchen beyond",
+        caption: "Dining Area",
       },
       {
-        src: "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800&q=80",
-        alt: "Comfortable bedroom with natural light",
-        caption: "Primary bedroom",
+        src: "/images/kitchen.jpg",
+        alt: "Fully equipped kitchen with white cabinets and black granite countertops",
+        caption: "Kitchen",
       },
       {
-        src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
-        alt: "Modern bathroom",
-        caption: "En-suite bathroom",
+        src: "/images/bedroom-1.jpg",
+        alt: "Master bedroom with king bed and hardwood floors",
+        caption: "Master Bedroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
-        alt: "Building exterior and pool",
-        caption: "Building pool and amenities",
+        src: "/images/bedroom-2.jpg",
+        alt: "Second bedroom with queen bed and wall-mounted TV",
+        caption: "Second Bedroom",
+      },
+      {
+        src: "/images/bathroom-2.jpg",
+        alt: "Stunning bathroom with floral wallpaper and marble countertop",
+        caption: "Primary Bathroom",
+      },
+      {
+        src: "/images/bathroom-1.jpg",
+        alt: "Clean modern bathroom with hexagon tile floor",
+        caption: "Second Bathroom",
+      },
+      {
+        src: "/images/laundry.jpg",
+        alt: "In-unit LG washer and dryer with shelving",
+        caption: "In-Unit Laundry",
       },
     ],
     // ── Area / Palm Beach Photos ──────────────────────────────────────────────
