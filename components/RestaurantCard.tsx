@@ -5,7 +5,7 @@ import type { Restaurant } from "@/data/guide";
 
 const CATEGORY_COLORS: Record<string, string> = {
   "Best Overall":  "#f59e0b",
-  "Date Night":    "#f43f5e",
+  "Upscale":    "#f43f5e",
   "Casual":        "#10b981",
   "Breakfast":     "#f97316",
   "Drinks":        "#8b5cf6",
