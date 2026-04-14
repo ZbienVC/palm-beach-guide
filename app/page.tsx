@@ -354,7 +354,7 @@ function ShareButton() {
   const [shared, setShared] = useState(false);
   const handleShare = async () => {
     if (typeof navigator !== "undefined" && navigator.share) {
-      try { await navigator.share({ title: "Palm Beach Local Guide", url: window.location.href }); }
+      try { await navigator.share({ title: "Stay West Palm — Local Guide", url: window.location.href }); }
       catch { /* cancelled */ }
     } else if (navigator.clipboard) {
       await navigator.clipboard.writeText(window.location.href);
