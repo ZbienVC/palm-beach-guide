@@ -10,20 +10,19 @@ export function ActivityCard({ item }: { item: Activity }) {
       href={item.mapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-white rounded-2xl p-5 shadow-card border border-sand-100/80 active:scale-[0.98] transition-transform"
+      className="block bg-white rounded-xl px-4 py-3 shadow-sm border border-sand-100/80 active:scale-[0.98] transition-transform"
     >
-      <h3 className="font-display text-xl text-slate-800 leading-snug mb-1.5">{item.title}</h3>
-      <p className="text-sm text-slate-500 leading-relaxed mb-3">{item.description}</p>
-      <div className="bg-ocean-50 rounded-xl px-3.5 py-3 border border-ocean-100/60 mb-3">
-        <p className="text-[10px] font-black text-ocean-500 mb-1 uppercase tracking-widest">Why go</p>
-        <p className="text-sm text-slate-700 leading-relaxed">{item.why}</p>
+      <div className="flex items-start justify-between gap-2 mb-1">
+        <h3 className="font-semibold text-sm text-slate-800 leading-snug">{item.title}</h3>
+        {item.bestTime && (
+          <span className="text-[10px] text-slate-400 flex items-center gap-1 flex-shrink-0">
+            <Clock size={10} className="text-sand-400" />
+            {item.bestTime}
+          </span>
+        )}
       </div>
-      {item.bestTime && (
-        <span className="text-xs text-slate-400 flex items-center gap-1.5">
-          <Clock size={11} className="text-sand-400" />
-          Best time: <span className="text-slate-600 font-medium">{item.bestTime}</span>
-        </span>
-      )}
+      <p className="text-xs text-slate-500 leading-relaxed mb-2 line-clamp-2">{item.description}</p>
+      <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">{item.why}</p>
     </a>
   );
 }
@@ -36,18 +35,15 @@ export function AttractionCard({ item }: { item: Attraction }) {
       href={item.mapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-white rounded-2xl p-5 shadow-card border border-sand-100/80 active:scale-[0.98] transition-transform"
+      className="block bg-white rounded-xl px-4 py-3 shadow-sm border border-sand-100/80 active:scale-[0.98] transition-transform"
     >
-      <h3 className="font-display text-xl text-slate-800 leading-snug mb-1.5">{item.name}</h3>
-      <p className="text-sm text-slate-500 leading-relaxed mb-2">{item.description}</p>
-      <p className="text-sm text-slate-700 leading-relaxed">{item.why}</p>
+      <h3 className="font-semibold text-sm text-slate-800 leading-snug mb-1">{item.name}</h3>
+      <p className="text-xs text-slate-500 leading-relaxed mb-1 line-clamp-2">{item.description}</p>
+      <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">{item.why}</p>
       {item.tip && (
-        <div className="mt-3 pt-3 border-t border-sand-100">
-          <p className="text-xs text-ocean-600 font-semibold flex items-start gap-1.5">
-            <span className="mt-0.5 flex-shrink-0">💡</span>
-            {item.tip}
-          </p>
-        </div>
+        <p className="text-[11px] text-ocean-600 font-semibold mt-2 flex items-start gap-1">
+          <span className="flex-shrink-0">💡</span>{item.tip}
+        </p>
       )}
     </a>
   );
@@ -61,19 +57,19 @@ export function NightlifeCard({ spot }: { spot: NightlifeSpot }) {
       href={spot.mapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block rounded-2xl p-5 active:scale-[0.98] transition-transform overflow-hidden"
+      className="block rounded-xl px-4 py-3 active:scale-[0.98] transition-transform overflow-hidden"
       style={{ background: "linear-gradient(135deg, #1a1b2e 0%, #0f1824 100%)" }}
     >
-      <h3 className="font-display text-xl text-white leading-snug mb-1.5">{spot.name}</h3>
-      <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>{spot.vibe}</p>
-      <div className="flex items-center justify-between">
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-          Best for: <span style={{ color: "rgba(255,255,255,0.6)" }}>{spot.bestFor}</span>
-        </p>
+      <div className="flex items-start justify-between gap-2">
+        <h3 className="font-semibold text-sm text-white leading-snug">{spot.name}</h3>
         {spot.reservationNote && (
-          <span className="text-xs text-amber-400 font-semibold">Reserve ahead</span>
+          <span className="text-[10px] text-amber-400 font-semibold flex-shrink-0">Reserve</span>
         )}
       </div>
+      <p className="text-xs leading-relaxed mt-1 line-clamp-2" style={{ color: "rgba(255,255,255,0.6)" }}>{spot.vibe}</p>
+      <p className="text-[10px] mt-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>
+        Best for: <span style={{ color: "rgba(255,255,255,0.55)" }}>{spot.bestFor}</span>
+      </p>
     </a>
   );
 }
@@ -83,18 +79,14 @@ export function NightlifeCard({ spot }: { spot: NightlifeSpot }) {
 export function GemCard({ gem }: { gem: HiddenGem }) {
   const inner = (
     <div
-      className="rounded-2xl p-5 border"
+      className="rounded-xl px-4 py-3 border flex items-start gap-3"
       style={{ background: "linear-gradient(135deg, #faf7f2 0%, #f0ece3 100%)", borderColor: "#e8d8bc" }}
     >
-      <div className="flex items-start gap-3 mb-3">
-        <span className="text-2xl mt-0.5 flex-shrink-0">💎</span>
-        <div>
-          <h3 className="font-display text-xl text-slate-800 leading-snug">{gem.name}</h3>
-          <p className="text-sm text-slate-500 leading-relaxed mt-0.5">{gem.description}</p>
-        </div>
-      </div>
-      <div className="bg-white/80 rounded-xl px-3.5 py-3 border border-sand-200/60">
-        <p className="text-sm text-slate-700 leading-relaxed">{gem.why}</p>
+      <span className="text-xl flex-shrink-0 mt-0.5">💎</span>
+      <div>
+        <h3 className="font-semibold text-sm text-slate-800 leading-snug">{gem.name}</h3>
+        <p className="text-xs text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{gem.description}</p>
+        <p className="text-xs text-slate-600 leading-relaxed mt-1 line-clamp-2">{gem.why}</p>
       </div>
     </div>
   );
@@ -113,12 +105,12 @@ export function GemCard({ gem }: { gem: HiddenGem }) {
 
 export function ThoughtCard({ t }: { t: PersonalThought }) {
   const inner = (
-    <div className="bg-white rounded-2xl shadow-card border border-sand-100/80 overflow-hidden flex">
+    <div className="bg-white rounded-xl shadow-sm border border-sand-100/80 overflow-hidden flex">
       <div className="w-1 flex-shrink-0" style={{ background: "linear-gradient(180deg, #c8a06a, #b58240)" }} />
-      <div className="flex-1 p-5">
-        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-sand-400 mb-1">{t.label}</p>
-        <p className="font-display text-lg text-slate-800 leading-snug mb-1.5">{t.place}</p>
-        <p className="text-sm text-slate-500 leading-relaxed italic">&ldquo;{t.note}&rdquo;</p>
+      <div className="flex-1 px-4 py-3">
+        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-sand-400 mb-0.5">{t.label}</p>
+        <p className="font-semibold text-sm text-slate-800 leading-snug mb-1">{t.place}</p>
+        <p className="text-xs text-slate-500 leading-relaxed italic line-clamp-2">&ldquo;{t.note}&rdquo;</p>
       </div>
     </div>
   );
