@@ -324,9 +324,9 @@ function BottomNav() {
   };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 max-w-lg mx-auto">
+    <nav className="fixed bottom-0 left-0 right-0 z-50">
       <div className="bg-white border-t border-slate-100 pb-safe-bottom shadow-[0_-1px_12px_rgba(0,0,0,0.06)]">
-        <div className="flex">
+        <div className="max-w-lg mx-auto flex">
           {BOTTOM_NAV.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
