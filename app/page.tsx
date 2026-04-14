@@ -391,8 +391,8 @@ export default function Page() {
           <div className="absolute top-8 -right-8 w-32 h-32 rounded-full bg-white/5" />
           <div className="absolute -bottom-12 -left-12 w-44 h-44 rounded-full bg-white/5" />
 
-          <div className="relative z-10">
-            <div className="flex items-center justify-between mb-6">
+          <div className="relative z-10 text-center">
+            <div className="flex items-center justify-between mb-6 text-left">
               <a href={guide.property.mapsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 active:opacity-70">
                 <MapPin size={13} className="text-white/50" />
                 <span className="text-xs font-semibold text-white/60 tracking-wider">West Palm Beach, FL</span>
@@ -405,7 +405,7 @@ export default function Page() {
 
             {/* Content-type tag row */}
             {/* Content-type tag row */}
-            <div className="flex gap-1.5 flex-nowrap overflow-x-auto no-scrollbar">
+            <div className="flex gap-1.5 flex-nowrap overflow-x-auto no-scrollbar justify-center">
               {[
                 { emoji: "🍽️", label: "Food" },
                 { emoji: "🏄", label: "Activities" },
