@@ -212,16 +212,6 @@ export const guide: GuideData = {
       walkMins: 22,
       driveMins: 7,
     },
-    {
-      name: "Cucina dell\u2019Arte",
-      category: "Drinks",
-      description: "Italian restaurant that transitions into a bar scene late night",
-      why: "One of the few spots on the island that gets lively after 10pm. Good cocktails, great energy.",
-      area: "Royal Poinciana Way, Palm Beach",
-      mapsUrl: "https://maps.google.com/?q=Cucina+dell+Arte+Palm+Beach",
-      walkMins: 22,
-      driveMins: 7,
-    },
     // ── West Palm Beach (no bridge — short walks) ──────────────────────────
     {
       name: "El Camino",
