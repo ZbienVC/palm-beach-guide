@@ -541,7 +541,7 @@ export const guide: GuideData = {
       { src: "/images/bathroom-guest-1.jpg", alt: "Guest bathroom with floral wallpaper and blue hex tile", caption: "Guest Bathroom" },
       { src: "/images/bathroom-guest-2.jpg", alt: "Guest bathroom second angle", caption: "Guest Bathroom" },
       { src: "/images/patio.jpg", alt: "Patio with city views at night", caption: "Patio & View" },
-      { src: "/images/laundry.jpg", alt: "In-unit washer and dryer", caption: "In-Unit Laundry" },
+      { src: "/images/laundry-2.jpg", alt: "In-unit washer and dryer", caption: "In-Unit Laundry" },
     ],
     // ── Area / Palm Beach Photos ──────────────────────────────────────────────
         areaPhotos: [
