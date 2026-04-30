@@ -530,79 +530,29 @@ export const guide: GuideData = {
     //   Option B: Use any https:// URL (Airbnb listing photos, Google Drive, etc.)
     // The gallery handles both automatically.
     apartmentPhotos: [
-      {
-        src: "/images/living-room.jpg",
-        alt: "Spacious living room with floor-to-ceiling shuttered windows and sectional sofa",
-        caption: "Living Room",
-      },
-      {
-        src: "/images/dining.jpg",
-        alt: "Dining area with glass table and open kitchen beyond",
-        caption: "Dining Area",
-      },
-      {
-        src: "/images/kitchen.jpg",
-        alt: "Fully equipped kitchen with white cabinets and black granite countertops",
-        caption: "Kitchen",
-      },
-      {
-        src: "/images/bedroom-1.jpg",
-        alt: "Master bedroom with king bed and hardwood floors",
-        caption: "Master Bedroom",
-      },
-      {
-        src: "/images/bedroom-2.jpg",
-        alt: "Second bedroom with queen bed and wall-mounted TV",
-        caption: "Second Bedroom",
-      },
-      {
-        src: "/images/bathroom-1.jpg",
-        alt: "Clean modern bathroom with hexagon tile floor",
-        caption: "Primary Bathroom",
-      },
-      {
-        src: "/images/bathroom-2.jpg",
-        alt: "Stunning bathroom with floral wallpaper and marble countertop",
-        caption: "Second Bathroom",
-      },
-      {
-        src: "/images/laundry.jpg",
-        alt: "In-unit LG washer and dryer with shelving",
-        caption: "In-Unit Laundry",
-      },
+      { src: "/images/bedroom-master-1.jpg", alt: "Master bedroom with king bed", caption: "Master Bedroom" },
+      { src: "/images/bedroom-master-2.jpg", alt: "Master bedroom alternate angle", caption: "Master Bedroom" },
+      { src: "/images/bedroom-master-3.jpg", alt: "Master bedroom with sitting area", caption: "Master Bedroom" },
+      { src: "/images/bedroom-master-4.jpg", alt: "Master bedroom detail", caption: "Master Bedroom" },
+      { src: "/images/bedroom-guest-1.jpg", alt: "Guest bedroom with walk-in closet", caption: "Guest Bedroom" },
+      { src: "/images/bedroom-guest-2.jpg", alt: "Guest bedroom with comfortable queen bed", caption: "Guest Bedroom" },
+      { src: "/images/dining-area.jpg", alt: "Dining area with elegant table setting", caption: "Dining Area" },
+      { src: "/images/bathroom-master.jpg", alt: "Master bathroom with modern fixtures", caption: "Master Bathroom" },
+      { src: "/images/bathroom-guest-1.jpg", alt: "Guest bathroom with floral wallpaper and blue hex tile", caption: "Guest Bathroom" },
+      { src: "/images/bathroom-guest-2.jpg", alt: "Guest bathroom second angle", caption: "Guest Bathroom" },
+      { src: "/images/patio.jpg", alt: "Patio with city views at night", caption: "Patio & View" },
+      { src: "/images/laundry.jpg", alt: "In-unit washer and dryer", caption: "In-Unit Laundry" },
     ],
     // ── Area / Palm Beach Photos ──────────────────────────────────────────────
         areaPhotos: [
-      {
-        src: "/images/area-building.jpg",
-        alt: "The building and surrounding neighborhood with palm trees",
-        caption: "The Building & Neighborhood",
-      },
-      {
-        src: "/images/area-downtown.jpg",
-        alt: "Downtown West Palm Beach fountain plaza at sunset",
-        caption: "Downtown West Palm Beach",
-      },
-      {
-        src: "/images/area-clematis.jpg",
-        alt: "Clematis Street lit up at night with restaurants and palm trees",
-        caption: "Clematis Street",
-      },
-      {
-        src: "/images/area-cityplace-night.jpg",
-        alt: "CityPlace at night with illuminated clock tower and fountain",
-        caption: "CityPlace at Night",
-      },
-      {
-        src: "/images/area-rosemary.jpg",
-        alt: "Rosemary Square with palm trees and colorful lights at night",
-        caption: "Rosemary Square",
-      },
-      {
-        src: "/images/area-nightlife.jpg",
-        alt: "Downtown nightlife strip with colorful neon-lit buildings",
-        caption: "Downtown Nightlife",
-      },
+      { src: "/images/area-building.jpg", alt: "The building exterior", caption: "Your Building" },
+      { src: "/images/area-aerial.jpg", alt: "Aerial view of West Palm Beach showing Kravis Center and downtown", caption: "West Palm Beach" },
+      { src: "/images/area-kravis.jpg", alt: "Kravis Center for the Performing Arts", caption: "Kravis Center - Next Door" },
+      { src: "/images/community-pool.jpg", alt: "Community pool", caption: "Community Pool" },
+      { src: "/images/community-hottub.jpg", alt: "Community hot tub", caption: "Hot Tub" },
+      { src: "/images/community-gym.jpg", alt: "Fully equipped community gym", caption: "Community Gym" },
+      { src: "/images/area-rosemary.jpg", alt: "Rosemary Square with palm trees and colorful lights at night", caption: "Rosemary Square" },
+      { src: "/images/area-cityplace-night.jpg", alt: "CityPlace at night with illuminated clock tower", caption: "CityPlace at Night" },
     ],
   },
   houseInfo: {
