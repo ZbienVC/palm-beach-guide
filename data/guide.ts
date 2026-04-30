@@ -530,11 +530,11 @@ export const guide: GuideData = {
     //   Option B: Use any https:// URL (Airbnb listing photos, Google Drive, etc.)
     // The gallery handles both automatically.
     apartmentPhotos: [
-      { src: "/images/bedroom-master-1.jpg", alt: "Master bedroom with king bed", caption: "Master Bedroom" },
-      { src: "/images/bedroom-master-2.jpg", alt: "Master bedroom alternate angle", caption: "Master Bedroom" },
+      { src: "/images/bedroom-master-2.jpg", alt: "Master bedroom with king bed", caption: "Master Bedroom" },
       { src: "/images/bedroom-master-3.jpg", alt: "Master bedroom with sitting area", caption: "Master Bedroom" },
       { src: "/images/bedroom-master-4.jpg", alt: "Master bedroom detail", caption: "Master Bedroom" },
-      { src: "/images/bedroom-guest-1.jpg", alt: "Guest bedroom with walk-in closet", caption: "Guest Bedroom" },
+      { src: "/images/bedroom-master-1.jpg", alt: "Guest bedroom with walk-in closet and ceiling fan", caption: "Guest Bedroom" },
+      { src: "/images/bedroom-guest-1.jpg", alt: "Guest bedroom angle 2", caption: "Guest Bedroom" },
       { src: "/images/bedroom-guest-2.jpg", alt: "Guest bedroom with comfortable queen bed", caption: "Guest Bedroom" },
       { src: "/images/dining-area.jpg", alt: "Dining area with elegant table setting", caption: "Dining Area" },
       { src: "/images/bathroom-master.jpg", alt: "Master bathroom with modern fixtures", caption: "Master Bathroom" },
